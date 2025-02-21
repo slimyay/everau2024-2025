@@ -1,0 +1,5569 @@
+[
+    {
+        "id": "6bfe25f64298d2a8",
+        "type": "tab",
+        "label": "ReadyToShip下单",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "bcb7d5c7a9b44c29",
+        "type": "ui_text",
+        "z": "6bfe25f64298d2a8",
+        "group": "333af0c4f2c67b74",
+        "order": 8,
+        "width": 24,
+        "height": 1,
+        "name": "",
+        "label": "Order Total",
+        "format": "{{msg.order_total}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 970,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ab5a303f13708e9b",
+        "type": "open browser",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "browserType": "chrome",
+        "webURL": "https://setup.readytoship.com.au/auth/login",
+        "width": 1280,
+        "height": 1024,
+        "timeout": 3000,
+        "maximized": true,
+        "headless": false,
+        "args": [],
+        "serverURL": "http://localhost:4444",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "af9335fd14458d9a"
+            ]
+        ]
+    },
+    {
+        "id": "af9335fd14458d9a",
+        "type": "find element",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "selector": "css selector",
+        "target": "input[name=email]",
+        "multiple": false,
+        "timeout": 3000,
+        "waitFor": "2000",
+        "x": 370,
+        "y": 240,
+        "wires": [
+            [
+                "f3ad7d24c2188d49",
+                "0dc8f87729af017f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f3ad7d24c2188d49",
+        "type": "send keys",
+        "z": "6bfe25f64298d2a8",
+        "name": "email",
+        "keys": "support@theoneaustralia.com.au",
+        "selector": "css selector",
+        "target": "input[name=email]",
+        "mode": "first",
+        "timeout": 1000,
+        "waitFor": 500,
+        "clearVal": true,
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "2243ce842a1314e2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2243ce842a1314e2",
+        "type": "send keys",
+        "z": "6bfe25f64298d2a8",
+        "name": "password",
+        "keys": "jjj811231",
+        "selector": "css selector",
+        "target": "input[name=password]",
+        "mode": "first",
+        "timeout": 1000,
+        "waitFor": 500,
+        "clearVal": false,
+        "x": 280,
+        "y": 320,
+        "wires": [
+            [
+                "c622bbc00d3409c0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c622bbc00d3409c0",
+        "type": "click on",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "selector": "id",
+        "target": "loginButton",
+        "mode": "first",
+        "timeout": 1000,
+        "waitFor": 500,
+        "clickOn": false,
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "f99e713838e09cce"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "53c0a11ec5319caf",
+        "type": "click on",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "selector": "id",
+        "target": "shipping-run-dt-orders-exportLink",
+        "mode": "first",
+        "timeout": 1000,
+        "waitFor": 500,
+        "clickOn": false,
+        "x": 340,
+        "y": 480,
+        "wires": [
+            [
+                "fa4166ea40dd3252"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f99e713838e09cce",
+        "type": "find element",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "selector": "id",
+        "target": "shipping-run-dt-orders-exportLink",
+        "multiple": false,
+        "timeout": 3000,
+        "waitFor": 500,
+        "x": 350,
+        "y": 400,
+        "wires": [
+            [
+                "f707bf70505213f0",
+                "61103de6fb3ccfb0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "61103de6fb3ccfb0",
+        "type": "run script",
+        "z": "6bfe25f64298d2a8",
+        "name": "Select All",
+        "script": "ShippingAdvisor.dtSelectAll('shipping-run-dt-orders'); \nreturn false;",
+        "selector": "",
+        "target": "",
+        "mode": "first",
+        "timeout": 1000,
+        "waitFor": "2500",
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "53c0a11ec5319caf"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b9c5779efbe6f718",
+        "type": "file in",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "filename": "fpath",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 340,
+        "y": 720,
+        "wires": [
+            [
+                "ccd212c1bf0ba9ce"
+            ]
+        ]
+    },
+    {
+        "id": "fa4166ea40dd3252",
+        "type": "navigate",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "url": "chrome://downloads",
+        "navType": "to",
+        "waitFor": "2500",
+        "x": 180,
+        "y": 560,
+        "wires": [
+            [
+                "f8637c62f02f66c9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f8637c62f02f66c9",
+        "type": "find element",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "selector": "css selector",
+        "target": "downloads-manager",
+        "multiple": false,
+        "timeout": 3000,
+        "waitFor": "2000",
+        "x": 350,
+        "y": 560,
+        "wires": [
+            [
+                "14250389198dabba"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "14250389198dabba",
+        "type": "get text",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "expected": "",
+        "selector": "css selector",
+        "target": "downloads-manager",
+        "mode": "first",
+        "timeout": 1000,
+        "waitFor": 500,
+        "savetofile": false,
+        "x": 180,
+        "y": 640,
+        "wires": [
+            [
+                "ec3a28eb91e299e2",
+                "8a6654280be145df"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ec3a28eb91e299e2",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "获得下载文件名",
+        "func": "const regex = /order.+csv/;\nlet match=msg.payload.match(regex);\nmsg.fpath =\"C:\\\\Users\\\\Admin\\\\Downloads\\\\\"+match[0];\nmsg.fname = match[0];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 720,
+        "wires": [
+            [
+                "b9c5779efbe6f718"
+            ]
+        ]
+    },
+    {
+        "id": "72fee3168ff72f41",
+        "type": "csv",
+        "z": "6bfe25f64298d2a8",
+        "name": "CSV Parse ",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": false,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 390,
+        "y": 800,
+        "wires": [
+            [
+                "4868794dc9b424e2"
+            ]
+        ]
+    },
+    {
+        "id": "8a6654280be145df",
+        "type": "close browser",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "waitFor": 500,
+        "x": 350,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d389c86d2cbfd8d4",
+        "type": "ui_button",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "group": "333af0c4f2c67b74",
+        "order": 1,
+        "width": 2,
+        "height": 1,
+        "passthru": false,
+        "label": "网站下载CSV",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "656f101f05026b85",
+                "ab5a303f13708e9b"
+            ]
+        ]
+    },
+    {
+        "id": "50b0cac633520514",
+        "type": "ui_text",
+        "z": "6bfe25f64298d2a8",
+        "group": "333af0c4f2c67b74",
+        "order": 2,
+        "width": 13,
+        "height": 1,
+        "name": "",
+        "label": "",
+        "format": "{{msg.steps_text}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 950,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "656f101f05026b85",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "初始化UI",
+        "func": "msg.order_total=0;\nmsg.oms_total=0;\nmsg.steps_text=\"\";\nmsg.steps_text =\"正在打开页面..\";\nmsg.payload=[];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 160,
+        "wires": [
+            [
+                "fbc6d1664887575d",
+                "2e949c2db6ab4cb1",
+                "b605b708d8913872",
+                "27867efa82b15eaa",
+                "517dd8ddee9322ab"
+            ]
+        ]
+    },
+    {
+        "id": "0dc8f87729af017f",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "更新状态文字 ",
+        "func": "msg.steps_text =\"正在登录..\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4868794dc9b424e2",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "Object变换，存入flow",
+        "func": "//var order = {};\n//var item = {};\nvar last_soid = \"\";\nvar soid = \"\";\nmsg.order_list = [];\nmsg.order_total = 0;\n\nflow.set(\"ready_csv\", msg.payload);\n\nfor (let i = 0; i < msg.payload.length; i++) {\n\n    soid = msg.payload[i].col2;\n\n    if (last_soid != soid && i != 0) {\n        msg.order_list.push(order);\n    }\n\n    if (msg.payload[i].col1 == \"ORDER\") {\n        var order = {};\n        order.no = msg.payload[i].col2;\n        order.fname = msg.payload[i].col3;\n        order.lname = msg.payload[i].col4;\n        order.add1 = msg.payload[i].col6;\n        order.add2 = msg.payload[i].col7;\n        order.suburb = msg.payload[i].col8;\n        order.state = msg.payload[i].col9;\n        order.postcode = msg.payload[i].col10;\n        order.country = msg.payload[i].col12;\n        order.phone = msg.payload[i].col13;\n        order.email = msg.payload[i].col14;\n        order.date = msg.payload[i].col23;\n        order.courier = msg.payload[i].col24;\n        order.service = msg.payload[i].col25;\n        order.channel = msg.payload[i].col26;\n        order.items = [];\n    } else if (msg.payload[i].col1 == \"ITEM\") {\n        var item = {};        \n        item.sku = msg.payload[i].col3;       \n        item.qty = msg.payload[i].col6;\n        item.name = msg.payload[i].col4;\n        order.items.push(item);\n    }\n\n\n    if (i+1 == msg.payload.length) {\n        msg.order_list.push(order);\n    }else{\n\n    last_soid = msg.payload[i].col2;\n    }\n}\n\nmsg.order_total = msg.order_list.length;\n\nflow.set(\"order_list\", msg.order_list);\n\nif (msg.fname!==undefined){\n    msg.steps_text = \"<a href='/files/\"+msg.fname+\"'>\"+msg.fpath + \"</a> 完成！\";\n}\nelse if (msg.file.name !== undefined) {\n    msg.steps_text =  msg.file.name + \" 完成！\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 440,
+        "wires": [
+            [
+                "fbc6d1664887575d",
+                "0b9d5ed844b0038d"
+            ]
+        ]
+    },
+    {
+        "id": "f707bf70505213f0",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "更新状态文字",
+        "func": "msg.steps_text =\"正在下载..\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fbc6d1664887575d",
+        "type": "ui_table",
+        "z": "6bfe25f64298d2a8",
+        "group": "333af0c4f2c67b74",
+        "name": "",
+        "order": 7,
+        "width": 24,
+        "height": 5,
+        "columns": [
+            {
+                "field": "col1",
+                "title": "",
+                "width": "10 px",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col2",
+                "title": "",
+                "width": "10 px",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col3",
+                "title": "",
+                "width": "12 px",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col4",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col5",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col6",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col7",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col8",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col9",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col10",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col11",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col12",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col13",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col14",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col15",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col16",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col17",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col18",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col19",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col20",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col21",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col22",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col23",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col24",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col25",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "col26",
+                "title": "",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 1150,
+        "y": 220,
+        "wires": [
+            [
+                "3f6f0dfd69fc26be"
+            ]
+        ]
+    },
+    {
+        "id": "7707a2a5d971a3c5",
+        "type": "debug",
+        "z": "6bfe25f64298d2a8",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2300,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "258c19ebca0154f9",
+        "type": "ui_toast",
+        "z": "6bfe25f64298d2a8",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 2430,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f6f0dfd69fc26be",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "Table 点击准备数据",
+        "func": "\n\nif (msg.payload.col2 !== undefined) {\n   var soid = msg.payload.col2;\n}else{\n   var  soid = msg.payload.no;\n}\n\nmsg.order_list = flow.get(\"order_list\");\nmsg.topic = soid +\" Row: \"+msg.row +\" Col: \"+ msg.topic;\nmsg.payload = \"Order Number: \" + soid +\"</br>\";\n\nfor (let i = 0; i < msg.order_list.length; i++) {\n\n   // msg.payload += msg.order_list[i].no;\n   if (soid == msg.order_list[i].no){\n      //  msg.payload = true;\n      msg.payload += \"<pre>\" + JSON.stringify(msg.order_list[i]) +\"</pre>\";\n   }\n\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 240,
+        "wires": [
+            [
+                "258c19ebca0154f9"
+            ]
+        ]
+    },
+    {
+        "id": "9e3f162490d3f6dd",
+        "type": "debug",
+        "z": "6bfe25f64298d2a8",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2500,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "af33d791de7185df",
+        "type": "comment",
+        "z": "6bfe25f64298d2a8",
+        "name": "Demo 说明",
+        "info": "需要安装组件：\nnode-red-contrib-simple-webdriver\nnode-red-dashboard\nnode-red-node-ui-table\n\nWebdriver需要下载配合google chrome浏览器一起使用\nhttps://chromedriver.chromium.org/downloads\n\n启动\nchromedriver.exe --port=4444  ",
+        "x": 160,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "e2983ad701319713",
+        "type": "ui_ui_control",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "events": "change",
+        "x": 360,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a173da44320ee952",
+        "type": "ui_button",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "group": "f7442258face64c0",
+        "order": 1,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "Home",
+        "tooltip": "",
+        "color": "black",
+        "bgcolor": "transparent",
+        "className": "nav",
+        "icon": "",
+        "payload": "{\"tab\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "e2983ad701319713"
+            ]
+        ]
+    },
+    {
+        "id": "0b9d5ed844b0038d",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "order_list",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 360,
+        "wires": [
+            [
+                "0241ead27d0c171d"
+            ]
+        ]
+    },
+    {
+        "id": "d719b63a743bdf23",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "Split Orders",
+        "number": 0,
+        "waitArray": 1,
+        "iterateArray": 1,
+        "x": 810,
+        "y": 1100,
+        "wires": [
+            [
+                "d021acfb1cf8565f"
+            ]
+        ]
+    },
+    {
+        "id": "d021acfb1cf8565f",
+        "type": "map-map",
+        "z": "6bfe25f64298d2a8",
+        "name": "State WarehouseNo Map",
+        "config": "95a11a185d21d3d6",
+        "in": "payload.state",
+        "inType": "msg",
+        "inLhsOrRhs": "lhs",
+        "out": "payload.WarehouseNo",
+        "outType": "msg",
+        "outLhsOrRhs": "rhs",
+        "caseInsensitive": true,
+        "forwardIfNoMatch": true,
+        "defaultIfNoMatch": "null",
+        "x": 1070,
+        "y": 1100,
+        "wires": [
+            [
+                "e1b16e9c6c47afad"
+            ]
+        ]
+    },
+    {
+        "id": "ed76ce0465912406",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "order",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.items",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1060,
+        "y": 1180,
+        "wires": [
+            [
+                "0b8291dd4716837b"
+            ]
+        ]
+    },
+    {
+        "id": "0b8291dd4716837b",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "Split Items",
+        "number": 0,
+        "waitArray": 1,
+        "iterateArray": 1,
+        "x": 1290,
+        "y": 1180,
+        "wires": [
+            [
+                "d97613896c9e70c8"
+            ]
+        ]
+    },
+    {
+        "id": "dd0eb3e0ea03d6ef",
+        "type": "component",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "targetComponent": null,
+        "targetComponentId": "dfd572c88d61957c",
+        "paramSources": {
+            "sku": {
+                "name": "sku",
+                "source": "payload.sku",
+                "sourceType": "msg"
+            },
+            "channel": {
+                "name": "channel",
+                "source": "order.WarehouseNo",
+                "sourceType": "msg"
+            }
+        },
+        "statuz": "",
+        "statuzType": "str",
+        "outputs": 1,
+        "outLabels": [
+            "default"
+        ],
+        "x": 850,
+        "y": 1280,
+        "wires": [
+            [
+                "bb05df7d8da6990a"
+            ]
+        ]
+    },
+    {
+        "id": "bb05df7d8da6990a",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "Combine Items",
+        "saveOutput": 1,
+        "x": 1140,
+        "y": 1280,
+        "wires": [
+            [
+                "f2fd2398df518e80"
+            ]
+        ]
+    },
+    {
+        "id": "3afb5a39116002fa",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "Combine Orders",
+        "saveOutput": 1,
+        "x": 1120,
+        "y": 1400,
+        "wires": [
+            [
+                "80e4343a8835addd"
+            ]
+        ]
+    },
+    {
+        "id": "f2fd2398df518e80",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "redis",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "order",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.stock",
+                "pt": "msg",
+                "to": "redis",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 1400,
+        "wires": [
+            [
+                "3afb5a39116002fa"
+            ]
+        ]
+    },
+    {
+        "id": "e1b16e9c6c47afad",
+        "type": "map-map",
+        "z": "6bfe25f64298d2a8",
+        "name": "Channel Map",
+        "config": "b757482c62c95498",
+        "in": "payload.channel",
+        "inType": "msg",
+        "inLhsOrRhs": "lhs",
+        "out": "payload.ChannelCode",
+        "outType": "msg",
+        "outLhsOrRhs": "rhs",
+        "caseInsensitive": true,
+        "forwardIfNoMatch": true,
+        "defaultIfNoMatch": "Unknown: {{{payload.channel}}}",
+        "x": 1310,
+        "y": 1100,
+        "wires": [
+            [
+                "165e6646f293c201"
+            ]
+        ]
+    },
+    {
+        "id": "80e4343a8835addd",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "OMS发货规则",
+        "func": "//\n//OMS发货规则\n//\nmsg.payload = msg.payload.filter(e => e != undefined);\nmsg.oms_list = [];\n\n//墨尔本metro postcode\nfunction isMelbournePostcode(postcode) {\n    const melbournePostcodes = [\n        '3000-3062', '3064-3098', '3101-3138', '3140-3210', '3800-3801', '8000-8999', '9999',\n        '3063', '3099-3100', '3139', '3335-3341', '3427-3443', '3750-3799', '3802-3811',\n        '3910-3920', '3926-3944', '3975-3978', '3980-3983', '3211-3220', '3350', '3353-3356',\n        '3689-3690'\n    ];\n\n    // Check if the postcode is in the list\n    for (let i = 0; i < melbournePostcodes.length; i++) {\n        const range = melbournePostcodes[i];\n\n        if (range.includes('-')) {\n            // If the range has a hyphen, it represents a range of postcodes\n            const [start, end] = range.split('-');\n            if (postcode >= start && postcode <= end) {\n                return true;\n            }\n        } else {\n            // Otherwise, it's a single postcode\n            if (postcode === range) {\n                return true;\n            }\n        }\n    }\n\n    return false;\n}\n\n//判断是否全有货\nfunction isHasStock(stock){\n    for (let x = 0; x < stock.length; x++) {\n        try{\n        if (stock[x].qty <= 0) {\n            return false;\n        }\n        } catch (e) {\n            return false;\n        }\n    }\nreturn true;\n}\n\n\n\nfor (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].oms = false;\n    msg.payload[i].oms_mel = false;\n\n//维洲地址墨尔本市区 和 WA地区的\n    if (isHasStock(msg.payload[i].stock) && msg.payload[i].state === \"VIC\" && isMelbournePostcode(msg.payload[i].postcode.toString())){\n        msg.payload[i].oms = true;\n     \n    }else if (isHasStock(msg.payload[i].stock) && msg.payload[i].state === \"WA\" ) {\n        msg.payload[i].oms = true;\n       \n    }\n\n//悉尼无货，墨尔本有货，强制转移\n    if (msg.payload[i].oms_ausyd1 === false && msg.payload[i].oms_syd === false && isHasStock(msg.payload[i].stock) && msg.payload[i].WarehouseNo === \"AUSME1\") {\n        msg.payload[i].oms = true;\n        //标记只有墨尔本有货\n          msg.payload[i].oms_mel = true;\n        \n        \n    }\n    \n\n}\n\n\n//过滤一下 oms = true 放入msg.oms_list\nvar id=1;\nfor (let i = 0; i < msg.payload.length; i++) {\n    if (msg.payload[i].oms && msg.payload[i].items.length>0){\n        msg.payload[i].id=id;\n        msg.payload[i].items_json = JSON.stringify(msg.payload[i].items);\n        msg.oms_list.push(msg.payload[i]);\n        id++;\n    }\n}\n\nmsg.payload_debug=msg.payload;\nmsg.oms_total = msg.oms_list.length;\nmsg.payload = msg.oms_list;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1340,
+        "y": 1400,
+        "wires": [
+            [
+                "4292118b76dea706"
+            ]
+        ]
+    },
+    {
+        "id": "2e949c2db6ab4cb1",
+        "type": "ui_table",
+        "z": "6bfe25f64298d2a8",
+        "group": "3254beef28825cd1",
+        "name": "OMS Orders",
+        "order": 4,
+        "width": 16,
+        "height": 7,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "no",
+                "title": "Order Number",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "state",
+                "title": "State",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "WarehouseNo",
+                "title": "WarehouseNo",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "items_json",
+                "title": "Items",
+                "width": "30%",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "channel",
+                "title": "Channel",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "ChannelCode",
+                "title": "ChannelCode",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "oms_syd",
+                "title": "SYD",
+                "width": "",
+                "align": "left",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "oms_single",
+                "title": "Signle",
+                "width": "",
+                "align": "left",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 1970,
+        "y": 340,
+        "wires": [
+            [
+                "3f6f0dfd69fc26be"
+            ]
+        ]
+    },
+    {
+        "id": "4292118b76dea706",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "oms_list",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "oms_list",
+                "pt": "flow",
+                "to": "oms_list",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "filter",
+                "pt": "global",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "limit",
+                "pt": "global",
+                "to": "10",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1560,
+        "y": 1400,
+        "wires": [
+            [
+                "2e949c2db6ab4cb1",
+                "b605b708d8913872",
+                "4b9f7088c15889d1",
+                "be90580ec1b078c8",
+                "f89441deaf13e474",
+                "87c1461fd76b6b33",
+                "a885f70643f0e7fb"
+            ]
+        ]
+    },
+    {
+        "id": "b605b708d8913872",
+        "type": "ui_text",
+        "z": "6bfe25f64298d2a8",
+        "group": "3254beef28825cd1",
+        "order": 3,
+        "width": 16,
+        "height": 1,
+        "name": "",
+        "label": "OMS Orders",
+        "format": "{{msg.oms_total}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 2070,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d46058830b4c5d8c",
+        "type": "ui_upload",
+        "z": "6bfe25f64298d2a8",
+        "group": "333af0c4f2c67b74",
+        "title": "ReadytoShip CSV Import",
+        "name": "Upload",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "chunk": "2048",
+        "transfer": "text",
+        "x": 680,
+        "y": 40,
+        "wires": [
+            [
+                "656f101f05026b85",
+                "ccd212c1bf0ba9ce"
+            ]
+        ]
+    },
+    {
+        "id": "efeaa78459ab05df",
+        "type": "ui_list",
+        "z": "6bfe25f64298d2a8",
+        "group": "3254beef28825cd1",
+        "name": "channel",
+        "order": 1,
+        "width": 4,
+        "height": 8,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 2060,
+        "y": 1400,
+        "wires": [
+            [
+                "9823f12bd62e4929"
+            ]
+        ]
+    },
+    {
+        "id": "4b9f7088c15889d1",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "Filter Channel",
+        "func": "let list=[];\n\nfor (let i = 0; i < msg.payload.length; i++) {\n   var option = {};\n    option.title=msg.payload[i].channel;\n    option.channel = msg.payload[i].channel;\n    option.isChecked = true;\n    \n    list.push(option);\n}\n\n//msg.payload = list;\n\nmsg.payload = list.filter((item, index, self) =>\n    index === self.findIndex(obj => (\n        obj.title === item.title && obj.isChecked === item.isChecked\n    ))\n);\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 1400,
+        "wires": [
+            [
+                "efeaa78459ab05df"
+            ]
+        ]
+    },
+    {
+        "id": "be90580ec1b078c8",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "Filter WarehouseNo",
+        "func": "let list = [];\n\nfor (let i = 0; i < msg.payload.length; i++) {\n    var option = {};\n    option.title = msg.payload[i].WarehouseNo;\n    option.WarehouseNo = msg.payload[i].WarehouseNo;\n    option.isChecked = true;\n\n    list.push(option);\n}\n\n//msg.payload = list;\n\nmsg.payload = list.filter((item, index, self) =>\n    index === self.findIndex(obj => (\n        obj.title === item.title && obj.isChecked === item.isChecked\n    ))\n);\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1860,
+        "y": 1480,
+        "wires": [
+            [
+                "cc26f057c2fff219"
+            ]
+        ]
+    },
+    {
+        "id": "cc26f057c2fff219",
+        "type": "ui_list",
+        "z": "6bfe25f64298d2a8",
+        "group": "3254beef28825cd1",
+        "name": "WearhouseNo",
+        "order": 2,
+        "width": 4,
+        "height": 3,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 2080,
+        "y": 1480,
+        "wires": [
+            [
+                "9823f12bd62e4929"
+            ]
+        ]
+    },
+    {
+        "id": "9823f12bd62e4929",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 7",
+        "func": "var control = {};\nvar l = {};\nvar f = global.get(\"filter\")\nvar lm = global.get(\"limit\")\n\n\nif (Number.isInteger(msg.payload)) {  \n    lm = msg.payload;\n    global.set(\"limit\", lm);    \n}\n\n\ncontrol.command=\"setFilter\";\ncontrol.returnPromise=true;\n\nf = f.filter(function (obj) {\n    return obj.value !== msg.payload.title;\n});\n\n\nif (msg.payload.isChecked){\n    var op=\"=\";\n\n}else{\n    var op=\"!=\";\n\n    if (msg.payload.channel !== undefined) {\n\n        l.field = \"channel\";\n        l.type = op;\n        l.value = msg.payload.channel;\n        f.push(l);\n    }\n\n    if (msg.payload.WarehouseNo !== undefined) {\n\n        l.field = \"WarehouseNo\";\n        l.type = op;\n        l.value = msg.payload.WarehouseNo;\n\n        f.push(l);\n    }\n\n   \n\n}\n\n\n\nif (msg.payload.title === \"SYD No Stock\") {\n\n//去掉老的状态\n    f = f.filter(function (obj) {\n        return obj.field !== \"oms_mel\";\n    });\n\n//加上新的\n    if (msg.payload.isChecked) {\n        l.field = \"oms_mel\";\n        l.type = op;\n        l.value = true;\n        f.push(l);\n    }\n}\n\nif (msg.payload.title === \"Single Item\") {\n\n    //去掉老的状态\n    f = f.filter(function (obj) {\n        return obj.field !== \"oms_single\";\n    });\n\n    //加上新的\n    if (msg.payload.isChecked) {\n        l.field = \"oms_single\";\n        l.type = op;\n        l.value = true;\n        f.push(l);\n    }\n}\n\nif (Number.isInteger(msg.payload)){\n\n    //去掉老的状态\n    f = f.filter(function (obj) {\n        return obj.field !== \"id\";\n    });\n    l.field = \"id\";\n    l.type = \">\";\n    l.value = msg.payload;\n    f.push(l);\n\n}\n\nglobal.set(\"filter\", f);\n\nvar oms_list = flow.get(\"oms_list\");\n\nmsg.filted = oms_list.filter(obj => {\n    // Check if all filters match the object\n    return f.every(filter => {\n        const { field, type, value } = filter;\n\n        switch (type) {\n            case '>':\n                return obj[field] > value;\n            case '<':\n                return obj[field] < value;\n            case '!=':\n                return obj[field] !== value;\n            case '=':\n                return obj[field] === value;\n            // Add cases for other types of filters as needed\n            default:\n                return true;\n        }\n    });\n});\n\n\n\nmsg.oms_total = msg.filted.length;\n\n\nvar limit = parseInt(lm / 10 * msg.oms_total);\n\n\n\n\ncontrol.arguments=[f];\nmsg.payload=control;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2300,
+        "y": 1440,
+        "wires": [
+            [
+                "b605b708d8913872",
+                "2e949c2db6ab4cb1",
+                "9e3f162490d3f6dd"
+            ]
+        ]
+    },
+    {
+        "id": "fd3185f60933f1d7",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filter",
+                "pt": "msg",
+                "to": "filter",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "oms_list",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "oms_result",
+                "pt": "flow",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "oms_error",
+                "pt": "flow",
+                "to": "[]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 1520,
+        "wires": [
+            [
+                "b0bb4388df64deca"
+            ]
+        ]
+    },
+    {
+        "id": "086b2dde3db2a8bf",
+        "type": "ui_button",
+        "z": "6bfe25f64298d2a8",
+        "name": "oms_import",
+        "group": "3254beef28825cd1",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "OMS Import",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 1520,
+        "wires": [
+            [
+                "fd3185f60933f1d7",
+                "29cf9319dc6cab1b"
+            ]
+        ]
+    },
+    {
+        "id": "b0bb4388df64deca",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "OMS JSON",
+        "func": "msg.payload = msg.payload.filter(obj => {\n    // Check if all filters match the object\n    return msg.filter.every(filter => {\n        const { field, type, value } = filter;\n\n        switch (type) {\n            case '>':\n                return obj[field] > value;\n            case '<':\n                return obj[field] < value;\n            case '!=':\n                return obj[field] !== value;\n            case '=':\n                return obj[field] === value;    \n            // Add cases for other types of filters as needed\n            default:\n                return true;\n        }\n    });\n});\n\n\nmsg.oms_order=[];\n// Loop through each order\nfor (const order of msg.payload) {\n    if (order.phone === undefined || order.phone === null){\n        order.phone = \"0\";\n    }\n\n    if (order.add2 === undefined || order.add2 === null) {\n        order.add2 = \"\";\n    }\n\n    // Loop through each item in the order\n    for (const item of order.items) {\n        // Output the flattened data for each item        \n        var line = {\n            \"ChannelCode\": order.ChannelCode,\n            \"channel\": order.channel,\n            \"WarehouseNo\": order.WarehouseNo,\n            \"ReciverName\": order.fname + \" \" + order.lname,\n            \"ReciverPhone\": order.phone,\n            \"ReciverTel\": order.phone,\n            \"ReciverAddr\": order.add1 + \" \" + order.add2,\n            \"ReciverCountryCode\": \"101\",\n            \"ReciverProvince\": order.state,\n            \"ReciverCity\": order.suburb,\n            \"ReciverPostCode\": order.postcode,\n            \"Barcode\": item.sku,\n            \"OrderQty\": item.qty,\n            \"TrafficType\": 1,\n            \"IsSubmit\": 1,\n            \"ClientOrderNo\": order.no\n        };\n        msg.oms_order.push(line);\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 1620,
+        "wires": [
+            [
+                "7d379faf250ece15"
+            ]
+        ]
+    },
+    {
+        "id": "33f73db88ef0eaf9",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "number": 0,
+        "waitArray": 1,
+        "iterateArray": 1,
+        "x": 240,
+        "y": 1780,
+        "wires": [
+            [
+                "9019577d69a16a69"
+            ]
+        ]
+    },
+    {
+        "id": "6d54ea5ee1be444f",
+        "type": "switch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "OK",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Cancel",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 750,
+        "y": 1620,
+        "wires": [
+            [
+                "4cd6f957e2ffca5c",
+                "4aba7318208e9996"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e1b58e85bc9399d0",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "Create New Order Json",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 110,
+        "y": 2020,
+        "wires": [
+            [
+                "20c5ed614a596709"
+            ]
+        ]
+    },
+    {
+        "id": "49f17bc0d50ec4c6",
+        "type": "http request",
+        "z": "6bfe25f64298d2a8",
+        "name": "Search OMS",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Accept",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 230,
+        "y": 1840,
+        "wires": [
+            [
+                "347cde12738ef2d1"
+            ]
+        ]
+    },
+    {
+        "id": "347cde12738ef2d1",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "json decode oms_search",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 490,
+        "y": 1840,
+        "wires": [
+            [
+                "d71e4fd6617eddbf"
+            ]
+        ]
+    },
+    {
+        "id": "bf5b263d3a82fa17",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "import_done_combine",
+        "saveOutput": 1,
+        "x": 820,
+        "y": 2000,
+        "wires": [
+            [
+                "2274cd5a1b38a1ec",
+                "6c2bd9d79a1086fc"
+            ]
+        ]
+    },
+    {
+        "id": "8f23777c2acc02d8",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "method",
+                "pt": "msg",
+                "to": "POST",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "'http://39.108.231.0/EverApi/Api/DF/FromOnlineMall?token='& msg.token",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "oms_order_line",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 240,
+        "y": 1900,
+        "wires": [
+            [
+                "93e6e4f9ed4d8536"
+            ]
+        ]
+    },
+    {
+        "id": "9019577d69a16a69",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "oms_order_line",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "token",
+                "pt": "msg",
+                "to": "payload.Data.Token",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "method",
+                "pt": "msg",
+                "to": "GET",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "'http://39.108.231.0/EverApi/Api/DF/ByClientOrderNo?token='& msg.token &\t '&channelCode=' & msg.payload.ChannelCode & '&clientOrderNo=' & $encodeUrlComponent(msg.payload.ClientOrderNo)\t ",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 1780,
+        "wires": [
+            [
+                "49f17bc0d50ec4c6"
+            ]
+        ]
+    },
+    {
+        "id": "93e6e4f9ed4d8536",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 430,
+        "y": 1900,
+        "wires": [
+            [
+                "e256ec31e15e2927"
+            ]
+        ]
+    },
+    {
+        "id": "e256ec31e15e2927",
+        "type": "http request",
+        "z": "6bfe25f64298d2a8",
+        "name": "Create New Order",
+        "method": "use",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Accept",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 610,
+        "y": 1900,
+        "wires": [
+            [
+                "e1b58e85bc9399d0"
+            ]
+        ]
+    },
+    {
+        "id": "d45a327b4ac4f426",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Data",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.ChannelCode",
+                "pt": "msg",
+                "to": "oms_order_line.ChannelCode",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.ClientOrderNo",
+                "pt": "msg",
+                "to": "oms_order_line.ClientOrderNo",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.ChannelCode",
+                "pt": "msg",
+                "to": "oms_order_line.ChannelCode",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.channel",
+                "pt": "msg",
+                "to": "oms_order_line.channel",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 2000,
+        "wires": [
+            [
+                "bf5b263d3a82fa17",
+                "816fa3a66a10f7e8"
+            ]
+        ]
+    },
+    {
+        "id": "80f83b9a107a2499",
+        "type": "ui_button",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "group": "3254beef28825cd1",
+        "order": 12,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "retry",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 710,
+        "y": 360,
+        "wires": [
+            [
+                "0b9d5ed844b0038d"
+            ]
+        ]
+    },
+    {
+        "id": "6c2bd9d79a1086fc",
+        "type": "ui_table",
+        "z": "6bfe25f64298d2a8",
+        "group": "1720beaa592edf71",
+        "name": "OMS Result",
+        "order": 6,
+        "width": 24,
+        "height": 5,
+        "columns": [
+            {
+                "field": "ClientOrderNo",
+                "title": "ClientOrderNo",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "SerialNum",
+                "title": "SerialNum",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "IsRepetition",
+                "title": "IsRepetition",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "IsSubmitSuccess",
+                "title": "IsSubmitSuccess",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "channel",
+                "title": "Channel",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "ChannelCode",
+                "title": "ChannelCode",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "ErrorMsg",
+                "title": "ErrorMsg",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 1170,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "f89441deaf13e474",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "SYD No Stock",
+        "func": "let list = [];\n\n    var option = {};\n    option.title = \"SYD No Stock\";\n    option.isChecked = false;\n\n    list.push(option);\n\n//msg.payload = list;\nmsg.payload = list.filter((item, index, self) =>\n    index === self.findIndex(obj => (\n        obj.title === item.title && obj.isChecked === item.isChecked\n    ))\n);\n\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1840,
+        "y": 1560,
+        "wires": [
+            [
+                "fb502b6ca26a2a08"
+            ]
+        ]
+    },
+    {
+        "id": "fb502b6ca26a2a08",
+        "type": "ui_list",
+        "z": "6bfe25f64298d2a8",
+        "group": "3254beef28825cd1",
+        "name": "SYD No Stock",
+        "order": 5,
+        "width": 4,
+        "height": 2,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 2060,
+        "y": 1560,
+        "wires": [
+            [
+                "9823f12bd62e4929"
+            ]
+        ]
+    },
+    {
+        "id": "0241ead27d0c171d",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "number": 0,
+        "waitArray": true,
+        "iterateArray": true,
+        "x": 1120,
+        "y": 360,
+        "wires": [
+            [
+                "b9a0fcc2d591310b"
+            ]
+        ]
+    },
+    {
+        "id": "b9a0fcc2d591310b",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "order",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.items",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 360,
+        "wires": [
+            [
+                "90e4bf4accc5681d"
+            ]
+        ]
+    },
+    {
+        "id": "90e4bf4accc5681d",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "Split Items",
+        "number": 0,
+        "waitArray": 1,
+        "iterateArray": 1,
+        "x": 1530,
+        "y": 360,
+        "wires": [
+            [
+                "6f5757807393748e"
+            ]
+        ]
+    },
+    {
+        "id": "0882f8c3440312d0",
+        "type": "component",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "targetComponent": null,
+        "targetComponentId": "dfd572c88d61957c",
+        "paramSources": {
+            "sku": {
+                "name": "sku",
+                "source": "payload.sku",
+                "sourceType": "msg"
+            },
+            "channel": {
+                "name": "channel",
+                "source": "100095_100003",
+                "sourceType": "str"
+            }
+        },
+        "statuz": "",
+        "statuzType": "str",
+        "outputs": 1,
+        "outLabels": [
+            "default"
+        ],
+        "x": 1090,
+        "y": 480,
+        "wires": [
+            [
+                "4d9fcbc6a0cea8b9"
+            ]
+        ]
+    },
+    {
+        "id": "4d9fcbc6a0cea8b9",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "Combine Items",
+        "saveOutput": 1,
+        "x": 1320,
+        "y": 480,
+        "wires": [
+            [
+                "dadc89fb0cb81148"
+            ]
+        ]
+    },
+    {
+        "id": "dadc89fb0cb81148",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "redis",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "order",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.syd_stock",
+                "pt": "msg",
+                "to": "redis",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1540,
+        "y": 480,
+        "wires": [
+            [
+                "c0ccb1d338b0c9f2"
+            ]
+        ]
+    },
+    {
+        "id": "c0ccb1d338b0c9f2",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "saveOutput": 1,
+        "x": 1760,
+        "y": 480,
+        "wires": [
+            [
+                "a4bc1b2c13a45da6"
+            ]
+        ]
+    },
+    {
+        "id": "a822bb0decac2fd3",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "标记悉尼仓优先和单件",
+        "func": "msg.payload = msg.payload.filter(e => e !== undefined);\nfor (let i = 0; i < msg.payload.length; i++) {\n\n    if (msg.payload[i]!== undefined){\n\n        msg.payload[i].oms_syd = true;\n        msg.payload[i].oms_ausyd1 = true;\n        msg.payload[i].oms_single = false;\n\n        if (msg.payload[i].syd_stock.length === 1) {\n            msg.payload[i].oms_single = true;\n        }\n\n\n        //sku有库存\n        for (let x = 0; x < msg.payload[i].syd_stock.length; x++) {\n            try {\n                if (msg.payload[i].syd_stock[x].qty <= 0) {\n                    msg.payload[i].oms_syd = false;\n                }\n            } catch (e) {\n                msg.payload[i].oms_syd = false;\n            }\n        }\n\n        for (let x = 0; x < msg.payload[i].ausyd1_stock.length; x++) {\n            try {\n                if (msg.payload[i].ausyd1_stock[x].qty <= 0) {\n                    msg.payload[i].oms_ausyd1 = false;\n                }\n            } catch (e) {\n                msg.payload[i].oms_ausyd1 = false;\n            }\n        }\n\n\n\n    }\n\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 800,
+        "wires": [
+            [
+                "a5577e025abd8223",
+                "fa4bd3ac0566a3bf",
+                "ab523b392332064b",
+                "7707a2a5d971a3c5"
+            ]
+        ]
+    },
+    {
+        "id": "d71e4fd6617eddbf",
+        "type": "switch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload.Data",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 1820,
+        "wires": [
+            [
+                "8f23777c2acc02d8"
+            ],
+            [
+                "7b2405df1e55af2b"
+            ]
+        ]
+    },
+    {
+        "id": "7b2405df1e55af2b",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Data[0]",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.ErrorMsg",
+                "pt": "msg",
+                "to": "payload.ClientOrderNo & \" 已存在!\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 1840,
+        "wires": [
+            [
+                "bf5b263d3a82fa17",
+                "816fa3a66a10f7e8"
+            ]
+        ]
+    },
+    {
+        "id": "2274cd5a1b38a1ec",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "get output",
+        "func": "msg.payload = msg.payload.filter(e => e != undefined);\nconst values = msg.payload.map(obj => obj.ClientOrderNo); // Extract the values from each object\nmsg.payload = values.join(','); // Join the values with a comma separator\nmsg.soid_list=values;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 2200,
+        "wires": [
+            [
+                "8a8d2b3a48d09292"
+            ]
+        ]
+    },
+    {
+        "id": "87c1461fd76b6b33",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "Single Item",
+        "func": "let list = [];\n\n    var option = {};\n    option.title = \"Single Item\";\n    option.isChecked = false;\n\n    list.push(option);\n\n//msg.payload = list;\nmsg.payload = list.filter((item, index, self) =>\n    index === self.findIndex(obj => (\n        obj.title === item.title && obj.isChecked === item.isChecked\n    ))\n);\n\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1810,
+        "y": 1660,
+        "wires": [
+            [
+                "028d5a51203db219"
+            ]
+        ]
+    },
+    {
+        "id": "028d5a51203db219",
+        "type": "ui_list",
+        "z": "6bfe25f64298d2a8",
+        "group": "3254beef28825cd1",
+        "name": "Single Item",
+        "order": 6,
+        "width": 4,
+        "height": 2,
+        "lineType": "one",
+        "actionType": "check",
+        "allowHTML": false,
+        "outputs": 1,
+        "topic": "",
+        "x": 2050,
+        "y": 1660,
+        "wires": [
+            [
+                "9823f12bd62e4929"
+            ]
+        ]
+    },
+    {
+        "id": "165e6646f293c201",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 10",
+        "func": "if (!msg.payload.oms_syd && !msg.payload.oms_ausyd1) {\n\n\nif (msg.payload.WarehouseNo===\"100003\"){\n\n    msg.payload.WarehouseNo =\"AUSME1\";\n\n}\n\n\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 1180,
+        "wires": [
+            [
+                "ed76ce0465912406"
+            ]
+        ]
+    },
+    {
+        "id": "ccd212c1bf0ba9ce",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "修正引号里的回车和逗号",
+        "func": "msg.payload = msg.payload.replace(/\"([^\"]*)\"/g, function (m, g) {\n    return g.replace(/\\b([\\r\\n,]+)\\b|[\\r\\n,]+/g, function (n, h) {\n        return h ? ' ' : '';\n    });\n});\n\n\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 170,
+        "y": 800,
+        "wires": [
+            [
+                "72fee3168ff72f41",
+                "6dcbca7a9b813b30"
+            ]
+        ]
+    },
+    {
+        "id": "a5577e025abd8223",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "number": 0,
+        "waitArray": true,
+        "iterateArray": true,
+        "x": 800,
+        "y": 900,
+        "wires": [
+            [
+                "842e8766afbbcd18"
+            ]
+        ]
+    },
+    {
+        "id": "842e8766afbbcd18",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "order",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.items",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 900,
+        "wires": [
+            [
+                "4c2ac1441e31d6d9"
+            ]
+        ]
+    },
+    {
+        "id": "4c2ac1441e31d6d9",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "Split Items",
+        "number": 0,
+        "waitArray": 1,
+        "iterateArray": 1,
+        "x": 1250,
+        "y": 900,
+        "wires": [
+            [
+                "585f65a9e7858fab"
+            ]
+        ]
+    },
+    {
+        "id": "5d8dbf8f35a8dcc3",
+        "type": "component",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "targetComponent": null,
+        "targetComponentId": "dfd572c88d61957c",
+        "paramSources": {
+            "sku": {
+                "name": "sku",
+                "source": "payload.sku",
+                "sourceType": "msg"
+            },
+            "channel": {
+                "name": "channel",
+                "source": "PD20200409000188",
+                "sourceType": "str"
+            }
+        },
+        "statuz": "",
+        "statuzType": "str",
+        "outputs": 1,
+        "outLabels": [
+            "default"
+        ],
+        "x": 790,
+        "y": 980,
+        "wires": [
+            [
+                "b761a0b19b68ae10"
+            ]
+        ]
+    },
+    {
+        "id": "b761a0b19b68ae10",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "Combine Items",
+        "saveOutput": 1,
+        "x": 1040,
+        "y": 980,
+        "wires": [
+            [
+                "99ef781258663349"
+            ]
+        ]
+    },
+    {
+        "id": "99ef781258663349",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "redis",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "order",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.syd_stock_pd",
+                "pt": "msg",
+                "to": "redis",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1240,
+        "y": 980,
+        "wires": [
+            [
+                "a245460a2fde9075"
+            ]
+        ]
+    },
+    {
+        "id": "f2de81ad6bdd3c7d",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "过滤悉尼锁单库存",
+        "func": "msg.payload = msg.payload.filter(e => e !== undefined);\n//判断是否全有货\nfunction isHasStock(stock) {\n    for (let x = 0; x < stock.length; x++) {\n        try{\n        if (stock[x].qty <= 0) {\n            return false;\n        }\n        } catch (e) {\n            return false;\n        }\n    }\n    return true;\n}\n\n\n//sku有锁单有库存\nfor (let i = 0; i < msg.payload.length; i++) {\n    if (msg.payload[i] !== undefined) {\n        if (isHasStock(msg.payload[i].syd_stock_pd) && msg.payload[i].oms_syd === false){\n            msg.payload[i].oms_syd = true;\n        }\n    }\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1110,
+        "y": 1040,
+        "wires": [
+            [
+                "d719b63a743bdf23"
+            ]
+        ]
+    },
+    {
+        "id": "a245460a2fde9075",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "saveOutput": 1,
+        "x": 800,
+        "y": 1040,
+        "wires": [
+            [
+                "f2de81ad6bdd3c7d"
+            ]
+        ]
+    },
+    {
+        "id": "44fd40a0fe035a8c",
+        "type": "ui_template",
+        "z": "6bfe25f64298d2a8",
+        "group": "1720beaa592edf71",
+        "name": "Result",
+        "order": 2,
+        "width": 20,
+        "height": 2,
+        "format": "<style>\n    #mylog {\n        min-height: 100px;\n        padding: 0;\n        background-color: #aaaaaa3b;\n        white-space: pre;\n    }\n</style>\n\n<div id=\"mylog\" ng-bind=\"msg.payload\" contenteditable=\"true\">\n    <!-- payload will go here -->\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1350,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "34d0250522424e5e",
+        "type": "ui_template",
+        "z": "6bfe25f64298d2a8",
+        "group": "333af0c4f2c67b74",
+        "name": "使用说明",
+        "order": 3,
+        "width": 9,
+        "height": 3,
+        "format": "<style>\n    #intro {\n        min-height: 100px;\n        padding: 0;\n        background-color: #d9edf7;\n        white-space: pre;\n    }\n</style>\n\n<div id=\"intro\"  contenteditable=\"no\">\n<b>使用说明</b>    \n1. 可以上传CSV或者使用下载按钮下载CSV\n2. CSV成功上传/下载后，会显示出OMS的下单选项\n3. 筛选需要下单的订单后按OMS Import导入OMS\n4. 导入结果后会显示订单号，复制后回readytoship筛选\n</br>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1160,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29115c2daf53a01d",
+        "type": "ui_slider",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "label": "limit",
+        "tooltip": "",
+        "group": "3254beef28825cd1",
+        "order": 8,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "outs": "end",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "0",
+        "step": 1,
+        "className": "",
+        "x": 2030,
+        "y": 1740,
+        "wires": [
+            [
+                "9823f12bd62e4929"
+            ]
+        ]
+    },
+    {
+        "id": "79116d2255657da0",
+        "type": "ui_ui_control",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "events": "all",
+        "x": 480,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6dcbca7a9b813b30",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"group\":{\"show\":[\"Readytoship下单_oms\"],\"hide\":[\"Readytoship下单_oms_import\"]}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 280,
+        "y": 880,
+        "wires": [
+            [
+                "79116d2255657da0"
+            ]
+        ]
+    },
+    {
+        "id": "4cd6f957e2ffca5c",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"group\":{\"show\":[\"Readytoship下单_oms_import\"]}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 1540,
+        "wires": [
+            [
+                "0976a109d32eb148"
+            ]
+        ]
+    },
+    {
+        "id": "0976a109d32eb148",
+        "type": "ui_ui_control",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "events": "all",
+        "x": 980,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f93e259c021b5354",
+        "type": "ui_toast",
+        "z": "6bfe25f64298d2a8",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "Message",
+        "x": 580,
+        "y": 1620,
+        "wires": [
+            [
+                "6d54ea5ee1be444f"
+            ]
+        ]
+    },
+    {
+        "id": "7d379faf250ece15",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 14",
+        "func": "var total=msg.payload.length;\n\nif(total <1){\n    msg.payload = \"No orders!\";    \n}else{\n    msg.payload=total + \" orders will be Imported to OMS\";\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1620,
+        "wires": [
+            [
+                "f93e259c021b5354"
+            ]
+        ]
+    },
+    {
+        "id": "214f874842fc627e",
+        "type": "status",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "scope": null,
+        "x": 180,
+        "y": 1200,
+        "wires": [
+            [
+                "600dcce80ff1be2d"
+            ]
+        ]
+    },
+    {
+        "id": "7af5a89fd90ee94f",
+        "type": "ui_text",
+        "z": "6bfe25f64298d2a8",
+        "group": "3254beef28825cd1",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "name": "status",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 550,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "600dcce80ff1be2d",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "status.source.name",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 1200,
+        "wires": [
+            [
+                "7af5a89fd90ee94f"
+            ]
+        ]
+    },
+    {
+        "id": "d7cad181595d5170",
+        "type": "complete",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "scope": [
+            "4868794dc9b424e2",
+            "2274cd5a1b38a1ec"
+        ],
+        "uncaught": false,
+        "x": 190,
+        "y": 1160,
+        "wires": [
+            [
+                "18135e1204276f85"
+            ]
+        ]
+    },
+    {
+        "id": "f2d57ec2b259f2de",
+        "type": "complete",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "scope": [
+            "2274cd5a1b38a1ec"
+        ],
+        "uncaught": false,
+        "x": 1050,
+        "y": 2060,
+        "wires": [
+            [
+                "44fd40a0fe035a8c"
+            ]
+        ]
+    },
+    {
+        "id": "18135e1204276f85",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Done",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 1160,
+        "wires": [
+            [
+                "7af5a89fd90ee94f"
+            ]
+        ]
+    },
+    {
+        "id": "c0740dea881ce499",
+        "type": "complete",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "scope": [
+            "656f101f05026b85",
+            "0dc8f87729af017f",
+            "f707bf70505213f0",
+            "4868794dc9b424e2"
+        ],
+        "uncaught": false,
+        "x": 790,
+        "y": 100,
+        "wires": [
+            [
+                "50b0cac633520514",
+                "bcb7d5c7a9b44c29"
+            ]
+        ]
+    },
+    {
+        "id": "6f5757807393748e",
+        "type": "switch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload.sku",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1710,
+        "y": 360,
+        "wires": [
+            [
+                "8b811a51aa68f45b"
+            ],
+            [
+                "0882f8c3440312d0"
+            ]
+        ]
+    },
+    {
+        "id": "585f65a9e7858fab",
+        "type": "switch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload.sku",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1390,
+        "y": 900,
+        "wires": [
+            [
+                "150d8c2ec7ea2281"
+            ],
+            [
+                "5d8dbf8f35a8dcc3"
+            ]
+        ]
+    },
+    {
+        "id": "d97613896c9e70c8",
+        "type": "switch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload.sku",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1450,
+        "y": 1160,
+        "wires": [
+            [
+                "c409095abaa36238"
+            ],
+            [
+                "dd0eb3e0ea03d6ef"
+            ]
+        ]
+    },
+    {
+        "id": "a885f70643f0e7fb",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "limit",
+        "func": "msg.ui_control={\"mini\":0,\"max\":msg.oms_total}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1809,
+        "y": 1747,
+        "wires": [
+            [
+                "29115c2daf53a01d"
+            ]
+        ]
+    },
+    {
+        "id": "9fe66cf3c25164da",
+        "type": "csv",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": false,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 810,
+        "y": 2200,
+        "wires": [
+            [
+                "f5bac2a32e8e4a3f"
+            ]
+        ]
+    },
+    {
+        "id": "f5bac2a32e8e4a3f",
+        "type": "file",
+        "z": "6bfe25f64298d2a8",
+        "name": "output csv",
+        "filename": "msg.path",
+        "filenameType": "jsonata",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 990,
+        "y": 2200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a8d2b3a48d09292",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "ready_csv",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 2200,
+        "wires": [
+            [
+                "d20546757698787b"
+            ]
+        ]
+    },
+    {
+        "id": "d20546757698787b",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 15",
+        "func": "var newlist=[];\nfor (let i = 0; i < msg.payload.length; i++) {\n    \n    if (msg.soid_list.includes(msg.payload[i].col2)){\n        newlist.push(msg.payload[i]);\n    }\n}\n\nmsg.payload=newlist;\nvar time = new Date().toISOString().replaceAll(':', '').replace(/T/, '').replace(/\\..+/, '');\nmsg.csvfilename = \"orderExport_oms_\" + time.toString() + \".csv\";\nmsg.path =\"C:\\\\Users\\\\Admin\\\\Downloads\\\\orderExport_oms_\"+ time.toString() +\".csv\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 2200,
+        "wires": [
+            [
+                "9fe66cf3c25164da"
+            ]
+        ]
+    },
+    {
+        "id": "18cc6c740f6900f3",
+        "type": "complete",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "scope": [
+            "f5bac2a32e8e4a3f"
+        ],
+        "uncaught": false,
+        "x": 190,
+        "y": 1260,
+        "wires": [
+            [
+                "e72fcc1b85c379de"
+            ]
+        ]
+    },
+    {
+        "id": "e72fcc1b85c379de",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\"<a href='/files/\" & msg.csvfilename & \"'>\" & msg.csvfilename & \"</a>\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 1260,
+        "wires": [
+            [
+                "7af5a89fd90ee94f"
+            ]
+        ]
+    },
+    {
+        "id": "8b811a51aa68f45b",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.qty",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 480,
+        "wires": [
+            [
+                "4d9fcbc6a0cea8b9"
+            ]
+        ]
+    },
+    {
+        "id": "150d8c2ec7ea2281",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.qty",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1600,
+        "y": 900,
+        "wires": [
+            [
+                "b761a0b19b68ae10"
+            ]
+        ]
+    },
+    {
+        "id": "c409095abaa36238",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.qty",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1660,
+        "y": 1160,
+        "wires": [
+            [
+                "bb05df7d8da6990a"
+            ]
+        ]
+    },
+    {
+        "id": "20c5ed614a596709",
+        "type": "switch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload.Status",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "-1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 2020,
+        "wires": [
+            [
+                "d45a327b4ac4f426"
+            ],
+            [
+                "1eae8b86f4a7b41f"
+            ]
+        ]
+    },
+    {
+        "id": "1eae8b86f4a7b41f",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.ClientOrderNo",
+                "pt": "msg",
+                "to": "oms_order_line.ClientOrderNo",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 2060,
+        "wires": [
+            [
+                "bf5b263d3a82fa17",
+                "816fa3a66a10f7e8"
+            ]
+        ]
+    },
+    {
+        "id": "25c61f4dea2f149e",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "number": 0,
+        "waitArray": true,
+        "iterateArray": true,
+        "x": 840,
+        "y": 600,
+        "wires": [
+            [
+                "588c9c15818017ac"
+            ]
+        ]
+    },
+    {
+        "id": "588c9c15818017ac",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "order",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.items",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 600,
+        "wires": [
+            [
+                "7c16c56b26509ed0"
+            ]
+        ]
+    },
+    {
+        "id": "7c16c56b26509ed0",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "Split Items",
+        "number": 0,
+        "waitArray": 1,
+        "iterateArray": 1,
+        "x": 1290,
+        "y": 600,
+        "wires": [
+            [
+                "a7d1af0ed96d1998"
+            ]
+        ]
+    },
+    {
+        "id": "a7d1af0ed96d1998",
+        "type": "switch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload.sku",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1590,
+        "y": 600,
+        "wires": [
+            [
+                "5d3bdd2ed6b522c8"
+            ],
+            [
+                "020e5d4c772ca0a7"
+            ]
+        ]
+    },
+    {
+        "id": "7227cba02471a926",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "Combine Items",
+        "saveOutput": 1,
+        "x": 1200,
+        "y": 720,
+        "wires": [
+            [
+                "1644344e6c75a556"
+            ]
+        ]
+    },
+    {
+        "id": "020e5d4c772ca0a7",
+        "type": "component",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "targetComponent": null,
+        "targetComponentId": "dfd572c88d61957c",
+        "paramSources": {
+            "sku": {
+                "name": "sku",
+                "source": "payload.sku",
+                "sourceType": "msg"
+            },
+            "channel": {
+                "name": "channel",
+                "source": "100095_AUSYD1",
+                "sourceType": "str"
+            }
+        },
+        "statuz": "",
+        "statuzType": "str",
+        "outputs": 1,
+        "outLabels": [
+            "default"
+        ],
+        "x": 970,
+        "y": 720,
+        "wires": [
+            [
+                "7227cba02471a926"
+            ]
+        ]
+    },
+    {
+        "id": "5d3bdd2ed6b522c8",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.qty",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 720,
+        "wires": [
+            [
+                "7227cba02471a926"
+            ]
+        ]
+    },
+    {
+        "id": "1644344e6c75a556",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "redis",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "order",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.ausyd1_stock",
+                "pt": "msg",
+                "to": "redis",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1420,
+        "y": 720,
+        "wires": [
+            [
+                "b126ca6bb0b64c5b"
+            ]
+        ]
+    },
+    {
+        "id": "b126ca6bb0b64c5b",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "saveOutput": 1,
+        "x": 1640,
+        "y": 720,
+        "wires": [
+            [
+                "a822bb0decac2fd3"
+            ]
+        ]
+    },
+    {
+        "id": "fa4bd3ac0566a3bf",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 51",
+        "func": "msg.ausyd1=[];\n\nfor (let i = 0; i < msg.payload.length; i++) {\n\n    if (msg.payload[i].oms_ausyd1) {\n        msg.ausyd1.push(msg.payload[i].no)\n    }\n\n}\n\nmsg.ausyd1text = msg.ausyd1.join(\",\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1610,
+        "y": 800,
+        "wires": [
+            [
+                "27867efa82b15eaa"
+            ]
+        ]
+    },
+    {
+        "id": "a4bc1b2c13a45da6",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 52",
+        "func": "msg.payload = msg.payload.filter(e => e !== undefined);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 600,
+        "wires": [
+            [
+                "25c61f4dea2f149e"
+            ]
+        ]
+    },
+    {
+        "id": "0d4b8a52f4df89a3",
+        "type": "debug",
+        "z": "6bfe25f64298d2a8",
+        "name": "debug 38",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1090,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "4aba7318208e9996",
+        "type": "http request",
+        "z": "6bfe25f64298d2a8",
+        "name": "Get Token OMS_import",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://39.108.231.0/EverApi/Api/Token?appkey=EverUgg&appsecret=@RCDGB082304!",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 190,
+        "y": 1700,
+        "wires": [
+            [
+                "30cd27d862f43e87"
+            ]
+        ]
+    },
+    {
+        "id": "30cd27d862f43e87",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "json decode oms_import",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 470,
+        "y": 1700,
+        "wires": [
+            [
+                "62f8dd18347a56d6"
+            ]
+        ]
+    },
+    {
+        "id": "62f8dd18347a56d6",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "token",
+                "pt": "msg",
+                "to": "payload.Data.Token",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "oms_order",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 720,
+        "y": 1700,
+        "wires": [
+            [
+                "33f73db88ef0eaf9",
+                "0d4b8a52f4df89a3"
+            ]
+        ]
+    },
+    {
+        "id": "6554e57722ee2b87",
+        "type": "component_in",
+        "z": "6bfe25f64298d2a8",
+        "name": "SOAP Request",
+        "api": [
+            {
+                "name": "body",
+                "type": "string",
+                "required": true,
+                "contextOption": true
+            },
+            {
+                "name": "path",
+                "type": "string",
+                "required": true,
+                "contextOption": true
+            },
+            {
+                "name": "action",
+                "type": "string",
+                "required": true,
+                "contextOption": true
+            }
+        ],
+        "usecontext": true,
+        "x": 180,
+        "y": 2340,
+        "wires": [
+            [
+                "8eb673f53fec4c6c"
+            ]
+        ]
+    },
+    {
+        "id": "67f9d6efe5acce5e",
+        "type": "component_out",
+        "z": "6bfe25f64298d2a8",
+        "name": "SOAP Return",
+        "mode": "default",
+        "component_definitions_are_NOT_allowed_inside_subflows": false,
+        "x": 680,
+        "y": 2340,
+        "wires": []
+    },
+    {
+        "id": "8eb673f53fec4c6c",
+        "type": "simple-soap",
+        "z": "6bfe25f64298d2a8",
+        "host": "http://39.108.231.0",
+        "hostType": "str",
+        "path": "component.path",
+        "pathType": "msg",
+        "action": "component.action",
+        "actionType": "msg",
+        "body": "component.body",
+        "bodyType": "msg",
+        "mustache": false,
+        "attrkey": "$",
+        "charkey": "_",
+        "stripPrefix": false,
+        "simplify": false,
+        "normalizeTags": false,
+        "normalize": false,
+        "topic": "",
+        "name": "",
+        "useAuth": false,
+        "x": 430,
+        "y": 2340,
+        "wires": [
+            [
+                "67f9d6efe5acce5e"
+            ]
+        ]
+    },
+    {
+        "id": "6d45ba73efed0246",
+        "type": "component",
+        "z": "6bfe25f64298d2a8",
+        "name": "GetSheetList",
+        "targetComponent": null,
+        "targetComponentId": "6554e57722ee2b87",
+        "paramSources": {
+            "body": {
+                "name": "body",
+                "source": "body",
+                "sourceType": "msg"
+            },
+            "path": {
+                "name": "path",
+                "source": "/PDAServer/IntelligenceSendNotice.asmx",
+                "sourceType": "str"
+            },
+            "action": {
+                "name": "action",
+                "source": "http://tempuri.org/GetSheetList",
+                "sourceType": "str"
+            }
+        },
+        "statuz": "",
+        "statuzType": "str",
+        "outputs": 1,
+        "outLabels": [
+            "default"
+        ],
+        "x": 770,
+        "y": 2480,
+        "wires": [
+            [
+                "e9df8e1a8563750b"
+            ]
+        ]
+    },
+    {
+        "id": "818ebdb3c40c4214",
+        "type": "ui_etable",
+        "z": "6bfe25f64298d2a8",
+        "payload": "[{\"title\":\"OrderType\",\"field\":\"OrderType\"},{\"title\":\"Status\",\"field\":\"Status\"},{\"title\":\"SheetID\",\"field\":\"SheetID\",\"editor\":\"select\"},{\"title\":\"ChannelName\",\"field\":\"ChannelName\",\"headerFilter\":\"input\"},{\"title\":\"SheetDate\",\"field\":\"SheetDate\"},{\"title\":\"Quantity\",\"field\":\"Quantity\"},{\"title\":\"BackOrder\",\"field\":\"BackOrder\"},{\"title\":\"Createdby\",\"field\":\"Createdby\",\"headerFilter\":\"input\"},{\"title\":\"Remark\",\"field\":\"Remark\",\"headerFilter\":\"input\"}]",
+        "payloadType": "json",
+        "options": "{\"selectable\":true}",
+        "group": "a50878c30a15c0f5",
+        "name": "100003-Sydney Warehouse AU",
+        "order": 1,
+        "width": 24,
+        "height": 8,
+        "columns": [],
+        "outputs": 1,
+        "cts": false,
+        "x": 1190,
+        "y": 2480,
+        "wires": [
+            [
+                "1c4e7f9135790a7e"
+            ]
+        ]
+    },
+    {
+        "id": "e9df8e1a8563750b",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[\"soap:Envelope\"][\"soap:Body\"].GetSheetListResponse.GetSheetListResult.SheetLists.SheetList",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "rowselected_w",
+                "pt": "flow",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.Warehouse",
+                "pt": "msg",
+                "to": "100003",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 2480,
+        "wires": [
+            [
+                "818ebdb3c40c4214"
+            ]
+        ]
+    },
+    {
+        "id": "1c4e7f9135790a7e",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 54",
+        "func": "var rows=flow.get(\"rowselected_w\");\nmsg.payload.WarehouseCode=\"100003\"\nconst index = rows.findIndex(obj => obj.SheetID === msg.payload.SheetID);\n\nif (index !== -1) {\n    rows.splice(index, 1);\n}else{\n    rows.push(msg.payload);\n}\n\nflow.set(\"rowselected\", rows);\nmsg.selected = rows;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1450,
+        "y": 2480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "062031ba6c438130",
+        "type": "hidden-ui-load",
+        "z": "6bfe25f64298d2a8",
+        "group": "7459f8a69b74d9a6",
+        "order": 0,
+        "name": "",
+        "x": 100,
+        "y": 2460,
+        "wires": [
+            [
+                "e5684ada0c2322e5",
+                "2c897744a601b8c6"
+            ]
+        ]
+    },
+    {
+        "id": "0b3c82450b1ecc13",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "body",
+                "pt": "msg",
+                "to": "'<x:Envelope     xmlns:x=\"http://schemas.xmlsoap.org/soap/envelope/\"     xmlns:tem=\"http://tempuri.org/\">     <x:Header/>     <x:Body>         <tem:GetSheetList>             <tem:request>                 <tem:AppKey>Regentsoft</tem:AppKey>                 <tem:AppSecret>123</tem:AppSecret>                 <tem:BusinessType>All</tem:BusinessType>                 <tem:WarehouseId>d98ce9c51caa555a8f515f3a35d1600d</tem:WarehouseId>                 <tem:BeginDate>'&msg.BeginDate&'</tem:BeginDate>                 <tem:EndDate>'&msg.EndDate&'</tem:EndDate>                          </tem:request>         </tem:GetSheetList>     </x:Body> </x:Envelope>'",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 2480,
+        "wires": [
+            [
+                "6d45ba73efed0246"
+            ]
+        ]
+    },
+    {
+        "id": "b21ec6abab6cbf59",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "body",
+                "pt": "msg",
+                "to": "'<x:Envelope     xmlns:x=\"http://schemas.xmlsoap.org/soap/envelope/\"     xmlns:tem=\"http://tempuri.org/\">     <x:Header/>     <x:Body>         <tem:GetSheetList>             <tem:request>                 <tem:AppKey>Regentsoft</tem:AppKey>                 <tem:AppSecret>123</tem:AppSecret>                 <tem:BusinessType>All</tem:BusinessType>                 <tem:WarehouseId>aefc90500d07ab1eb5d0f57e73a4dfb4</tem:WarehouseId>                 <tem:BeginDate>'&msg.BeginDate&'</tem:BeginDate>                 <tem:EndDate>'&msg.EndDate&'</tem:EndDate>                            </tem:request>         </tem:GetSheetList>     </x:Body> </x:Envelope>'",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 2700,
+        "wires": [
+            [
+                "de34b134a70c67d9"
+            ]
+        ]
+    },
+    {
+        "id": "de34b134a70c67d9",
+        "type": "component",
+        "z": "6bfe25f64298d2a8",
+        "name": "GetSheetList",
+        "targetComponent": null,
+        "targetComponentId": "6554e57722ee2b87",
+        "paramSources": {
+            "body": {
+                "name": "body",
+                "source": "body",
+                "sourceType": "msg"
+            },
+            "path": {
+                "name": "path",
+                "source": "/PDAServer/IntelligenceSendNotice.asmx",
+                "sourceType": "str"
+            },
+            "action": {
+                "name": "action",
+                "source": "http://tempuri.org/GetSheetList",
+                "sourceType": "str"
+            }
+        },
+        "statuz": "",
+        "statuzType": "str",
+        "outputs": 1,
+        "outLabels": [
+            "default"
+        ],
+        "x": 790,
+        "y": 2700,
+        "wires": [
+            [
+                "06579a4cc9c9593f"
+            ]
+        ]
+    },
+    {
+        "id": "068d756168adb80c",
+        "type": "ui_etable",
+        "z": "6bfe25f64298d2a8",
+        "payload": "[{\"title\":\"OrderType\",\"field\":\"OrderType\"},{\"title\":\"Status\",\"field\":\"Status\"},{\"title\":\"SheetID\",\"field\":\"SheetID\",\"editor\":\"select\"},{\"title\":\"ChannelName\",\"field\":\"ChannelName\",\"headerFilter\":\"input\"},{\"title\":\"SheetDate\",\"field\":\"SheetDate\"},{\"title\":\"Quantity\",\"field\":\"Quantity\"},{\"title\":\"BackOrder\",\"field\":\"BackOrder\"},{\"title\":\"Createdby\",\"field\":\"Createdby\",\"headerFilter\":\"input\"},{\"title\":\"Remark\",\"field\":\"Remark\",\"headerFilter\":\"input\"}]",
+        "payloadType": "json",
+        "options": "{\"selectable\":true}",
+        "group": "4cc9761b7aea8c03",
+        "name": "AUSYD1-Sydney Silverwater warehouse AU",
+        "order": 1,
+        "width": 24,
+        "height": 8,
+        "columns": [],
+        "outputs": 1,
+        "cts": false,
+        "x": 1250,
+        "y": 2700,
+        "wires": [
+            [
+                "bac4615ffd93dcf7"
+            ]
+        ]
+    },
+    {
+        "id": "06579a4cc9c9593f",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[\"soap:Envelope\"][\"soap:Body\"].GetSheetListResponse.GetSheetListResult.SheetLists.SheetList",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "rowselected_s",
+                "pt": "flow",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.Warehouse",
+                "pt": "msg",
+                "to": "AUSYD1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 2700,
+        "wires": [
+            [
+                "068d756168adb80c"
+            ]
+        ]
+    },
+    {
+        "id": "bac4615ffd93dcf7",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 55",
+        "func": "var rows=flow.get(\"rowselected_s\");\nmsg.payload.WarehouseCode = \"AUSYD1\"\nconst index = rows.findIndex(obj => obj.SheetID === msg.payload.SheetID);\n\nif (index !== -1) {\n    rows.splice(index, 1);\n}else{\n    rows.push(msg.payload);\n}\n\nflow.set(\"rowselected\", rows);\nmsg.selected = rows;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1590,
+        "y": 2700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fb0353c830e35f26",
+        "type": "debug",
+        "z": "6bfe25f64298d2a8",
+        "name": "debug 37",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1340,
+        "y": 3160,
+        "wires": []
+    },
+    {
+        "id": "bf86ef8fdd3877c6",
+        "type": "ui_button",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "group": "7459f8a69b74d9a6",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "BackOrder换库下单",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 2780,
+        "wires": [
+            [
+                "945650e22ecd8ff5"
+            ]
+        ]
+    },
+    {
+        "id": "72d1f77f3547e3e9",
+        "type": "ui_toast",
+        "z": "6bfe25f64298d2a8",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 630,
+        "y": 2780,
+        "wires": [
+            [
+                "71cfb93662a5e026"
+            ]
+        ]
+    },
+    {
+        "id": "71cfb93662a5e026",
+        "type": "switch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "OK",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Cancel",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 850,
+        "y": 2780,
+        "wires": [
+            [
+                "83efe94111f5d3e4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f510a6e29c158da0",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "number": 0,
+        "waitArray": true,
+        "iterateArray": true,
+        "x": 860,
+        "y": 2900,
+        "wires": [
+            [
+                "18a66656e226b01b"
+            ]
+        ]
+    },
+    {
+        "id": "83efe94111f5d3e4",
+        "type": "http request",
+        "z": "6bfe25f64298d2a8",
+        "name": "Get Token",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://39.108.231.0/EverApi/Api/Token?appkey=EverUgg&appsecret=@RCDGB082304!",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 150,
+        "y": 2900,
+        "wires": [
+            [
+                "1993d08209b07e4b"
+            ]
+        ]
+    },
+    {
+        "id": "1993d08209b07e4b",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 2900,
+        "wires": [
+            [
+                "29d3a4dc1d35fe8d"
+            ]
+        ]
+    },
+    {
+        "id": "29d3a4dc1d35fe8d",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "token",
+                "pt": "msg",
+                "to": "payload.Data.Token",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 2900,
+        "wires": [
+            [
+                "8764a7985ec8739d"
+            ]
+        ]
+    },
+    {
+        "id": "a9de9966afee731a",
+        "type": "http request",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 370,
+        "y": 3060,
+        "wires": [
+            [
+                "156699f35eeb97c4"
+            ]
+        ]
+    },
+    {
+        "id": "18a66656e226b01b",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "'http://39.108.231.0/EverApi/Api/Order/BackOrderDetail?token='& msg.token &'&orderId='&\t msg.payload.SheetID",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "row",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 3060,
+        "wires": [
+            [
+                "a9de9966afee731a"
+            ]
+        ]
+    },
+    {
+        "id": "156699f35eeb97c4",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 550,
+        "y": 3060,
+        "wires": [
+            [
+                "3787df500ab24515"
+            ]
+        ]
+    },
+    {
+        "id": "4e2776e06d602187",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "saveOutput": 1,
+        "x": 1120,
+        "y": 3160,
+        "wires": [
+            [
+                "fb0353c830e35f26"
+            ]
+        ]
+    },
+    {
+        "id": "c360384f0d929f52",
+        "type": "debug",
+        "z": "6bfe25f64298d2a8",
+        "name": "debug 39",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 3500,
+        "wires": []
+    },
+    {
+        "id": "e5684ada0c2322e5",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "BeginDate",
+                "pt": "msg",
+                "to": "$substring($now(), 0, 10)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "EndDate",
+                "pt": "msg",
+                "to": "$substring($now(), 0, 10)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "BeginDate",
+                "pt": "flow",
+                "to": "BeginDate",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "EndDate",
+                "pt": "flow",
+                "to": "EndDate",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 2460,
+        "wires": [
+            [
+                "0b3c82450b1ecc13",
+                "b21ec6abab6cbf59"
+            ]
+        ]
+    },
+    {
+        "id": "ae91fb01ccfe4a0c",
+        "type": "ui_date_picker",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "label": "Begin Date",
+        "group": "7459f8a69b74d9a6",
+        "order": 1,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "topic": "Begin",
+        "topicType": "str",
+        "className": "",
+        "x": 270,
+        "y": 2540,
+        "wires": [
+            [
+                "5f0da24a4fa1c3dc"
+            ]
+        ]
+    },
+    {
+        "id": "5570ddf3f3d3affd",
+        "type": "ui_date_picker",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "label": "End Date",
+        "group": "7459f8a69b74d9a6",
+        "order": 2,
+        "width": 4,
+        "height": 1,
+        "passthru": true,
+        "topic": "End",
+        "topicType": "str",
+        "className": "",
+        "x": 240,
+        "y": 2660,
+        "wires": [
+            [
+                "5f0da24a4fa1c3dc"
+            ]
+        ]
+    },
+    {
+        "id": "5f0da24a4fa1c3dc",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 56",
+        "func": "msg.BeginDate =flow.get(\"BeginDate\");\nmsg.EndDate =flow.get(\"EndDate\");\n\n\n// Convert the timestamp to a Date object\nconst date = new Date(msg.payload);\n\n// Extract the year, month, and day\nconst year = date.getFullYear();\nconst month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed, so add 1\nconst day = String(date.getDate()).padStart(2, '0');\n\n// Format the date as YYYY-MM-DD\nconst formattedDate = `${year}-${month}-${day}`;\n\n\nif(msg.topic==\"Begin\"){\n    msg.BeginDate = formattedDate\n    flow.set(\"BeginDate\", formattedDate);    \n}\nif (msg.topic == \"End\") {\n    msg.EndDate = formattedDate\n    flow.set(\"EndDate\", formattedDate);    \n}\n\nmsg.payload=[];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 2600,
+        "wires": [
+            [
+                "0b3c82450b1ecc13",
+                "b21ec6abab6cbf59",
+                "818ebdb3c40c4214",
+                "068d756168adb80c"
+            ]
+        ]
+    },
+    {
+        "id": "945650e22ecd8ff5",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 57",
+        "func": "msg.payload ='<h2>Backorder确认下单</h2>';\nconst w = flow.get(\"rowselected_w\");\nconst s = flow.get(\"rowselected_s\");\nmsg.payload = msg.payload + \"<table id='confirm-table'><thead><tr><th>Move</th><th>SheetID</th><th>ChannelName</th><th>Qty</th><th>BQty</th><th>By</th><th>Remark</th></tr></thead>\";\nmsg.payload = msg.payload + \"<tbody>\"\nif(w.length>0){\n\n\n    w.forEach(function(e) {        \n        msg.payload = msg.payload + \"<tr><td>100003 ⇛ AUSYD1</td><td>\" + e.SheetID + \"</td><td>\" + e.ChannelName + \"</td><td>\" + e.Quantity + \"</td><td>\" + e.BackOrder + \"</td><td>\" + e.Createdby + \"</td><td>\" + e.Remark +\"</td></tr>\";        \n    });\n\n}\nif (s.length > 0) {\n    s.forEach(function (e) {\n\n        msg.payload = msg.payload + \"<tr><td>AUSYD1 ⇛ 100003</td><td>\" + e.SheetID + \"</td><td>\" + e.ChannelName + \"</td><td>\" + e.Quantity + \"</td><td>\" + e.BackOrder + \"</td><td>\" + e.Createdby + \"</td><td>\" + e.Remark + \"</td></tr>\";\n\n    });\n\n}\n\nmsg.payload = msg.payload + '</tbody></table><script> var table = new Tabulator(\"#confirm-table\", {groupBy: \"move\",});</script>'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 2780,
+        "wires": [
+            [
+                "72d1f77f3547e3e9"
+            ]
+        ]
+    },
+    {
+        "id": "8764a7985ec8739d",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 58",
+        "func": "const w = flow.get(\"rowselected_w\");\nconst s = flow.get(\"rowselected_s\");\n\nmsg.payload =  [...w, ...s];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 2900,
+        "wires": [
+            [
+                "f510a6e29c158da0"
+            ]
+        ]
+    },
+    {
+        "id": "3787df500ab24515",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 59",
+        "func": "let request={}\n\n// 创建一个新的 Date 对象，表示当前时间\nlet today = new Date();\n\n// 获取年、月、日\nlet year = today.getFullYear();\nlet month = String(today.getMonth() + 1).padStart(2, '0'); // 月份是从 0 开始的，所以要加 1\nlet day = String(today.getDate()).padStart(2, '0');\n\n// 格式化输出\nlet formattedDate = year + '-' + month + '-' + day;\n\nrequest.SheetType=1\nrequest.ToChannelCode = msg.row.ChannelName.match(/^\\d+/)[0];\nif (msg.row.WarehouseCode==\"100003\") {\n    request.WarehouseCode = \"AUSYD1\"\n    request.Remark = \"送旧仓\" + msg.row.Quantity\n} else if (msg.row.WarehouseCode == \"AUSYD1\"){\n    request.WarehouseCode = \"100003\"    \n    request.Remark = \"送新仓\" +msg.row.Quantity\n}\nrequest.SheetDate = formattedDate\nrequest.Creator= \"API\"\nrequest.AutoCheck= true\nrequest.Details = msg.payload.Data.filter(item => item.BackOrderQty !== 0).map(item => ({\n    Barcode: item.Barcode,\n    Quantity: item.BackOrderQty\n}));\nmsg.payload=request\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 3060,
+        "wires": [
+            [
+                "bca8c6c7ce01e005"
+            ]
+        ]
+    },
+    {
+        "id": "bca8c6c7ce01e005",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 930,
+        "y": 3060,
+        "wires": [
+            [
+                "b636f4d4ba7ecb86"
+            ]
+        ]
+    },
+    {
+        "id": "5976cfac73b3f50c",
+        "type": "http request",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Accept",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 1270,
+        "y": 3060,
+        "wires": [
+            [
+                "abe2db7079e43907",
+                "07c1b4883b08b2eb"
+            ]
+        ]
+    },
+    {
+        "id": "b636f4d4ba7ecb86",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "'http://39.108.231.0/EverApi/Api/Order?token='&msg.token",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1090,
+        "y": 3060,
+        "wires": [
+            [
+                "5976cfac73b3f50c"
+            ]
+        ]
+    },
+    {
+        "id": "abe2db7079e43907",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 950,
+        "y": 3160,
+        "wires": [
+            [
+                "4e2776e06d602187"
+            ]
+        ]
+    },
+    {
+        "id": "07c1b4883b08b2eb",
+        "type": "ui_toast",
+        "z": "6bfe25f64298d2a8",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1370,
+        "y": 3300,
+        "wires": []
+    },
+    {
+        "id": "27867efa82b15eaa",
+        "type": "ui_template",
+        "z": "6bfe25f64298d2a8",
+        "group": "333af0c4f2c67b74",
+        "name": "",
+        "order": 9,
+        "width": 12,
+        "height": 4,
+        "format": "<p>AUSYD1</p>\n<textarea name=\"textentered\" id=\"textentered\" rows=\"8\" cols=\"25\">{{msg.ausyd1text}}</textarea>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1960,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "517dd8ddee9322ab",
+        "type": "ui_template",
+        "z": "6bfe25f64298d2a8",
+        "group": "333af0c4f2c67b74",
+        "name": "",
+        "order": 10,
+        "width": 12,
+        "height": 4,
+        "format": "<p>100003</p>\n<textarea name=\"textentered\" id=\"textentered\" rows=\"8\" cols=\"25\">{{msg.sydtext}}</textarea>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1960,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ab523b392332064b",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 60",
+        "func": "msg.syd=[];\n\nfor (let i = 0; i < msg.payload.length; i++) {\n\n    if (msg.payload[i].oms_syd) {\n        msg.syd.push(msg.payload[i].no)\n    }\n\n}\n\nmsg.sydtext = msg.syd.join(\",\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1610,
+        "y": 860,
+        "wires": [
+            [
+                "517dd8ddee9322ab"
+            ]
+        ]
+    },
+    {
+        "id": "2c897744a601b8c6",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 61",
+        "func": "msg.payload = new Date()\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 130,
+        "y": 2600,
+        "wires": [
+            [
+                "ae91fb01ccfe4a0c",
+                "5570ddf3f3d3affd"
+            ]
+        ]
+    },
+    {
+        "id": "6215af332da28059",
+        "type": "ui_template",
+        "z": "6bfe25f64298d2a8",
+        "group": "7459f8a69b74d9a6",
+        "name": "换库说明",
+        "order": 4,
+        "width": 12,
+        "height": "2",
+        "format": "<style>\n    #intro {\n        min-height: 100px;\n        padding: 0;\n        background-color: #d9edf7;\n        white-space: pre;\n    }\n</style>\n\n<div id=\"intro\"  contenteditable=\"no\">\n<b>换库下单说明：</b>\n选择对应仓库的未配出的配单，在100003和AUSYD1之间自动换库下入新期货订单。\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1322,
+        "y": 95,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "52a3fdbcba3e868a",
+        "type": "ui_button",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "group": "7459f8a69b74d9a6",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "快速配货",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 3200,
+        "wires": [
+            [
+                "39a73ceac6b03f14"
+            ]
+        ]
+    },
+    {
+        "id": "39a73ceac6b03f14",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 62",
+        "func": "msg.payload ='<h2>确认配货</h2>';\nconst w = flow.get(\"rowselected_w\");\nconst s = flow.get(\"rowselected_s\");\nmsg.payload = msg.payload + \"<table id='confirm-table'><thead><tr><th>Move</th><th>SheetID</th><th>ChannelName</th><th>Qty</th><th>BQty</th><th>By</th><th>Remark</th></tr></thead>\";\nmsg.payload = msg.payload + \"<tbody>\"\nif(w.length>0){\n\n\n    w.forEach(function(e) {        \n        msg.payload = msg.payload + \"<tr><td>100003</td><td>\" + e.SheetID + \"</td><td>\" + e.ChannelName + \"</td><td>\" + e.Quantity + \"</td><td>\" + e.BackOrder + \"</td><td>\" + e.Createdby + \"</td><td>\" + e.Remark +\"</td></tr>\";        \n    });\n\n}\nif (s.length > 0) {\n    s.forEach(function (e) {\n\n        msg.payload = msg.payload + \"<tr><td>AUSYD1</td><td>\" + e.SheetID + \"</td><td>\" + e.ChannelName + \"</td><td>\" + e.Quantity + \"</td><td>\" + e.BackOrder + \"</td><td>\" + e.Createdby + \"</td><td>\" + e.Remark + \"</td></tr>\";\n\n    });\n\n}\n\nmsg.payload = msg.payload + '</tbody></table><script> var table = new Tabulator(\"#confirm-table\", {groupBy: \"move\",});</script>'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 3200,
+        "wires": [
+            [
+                "fc2d51bbf64794ec"
+            ]
+        ]
+    },
+    {
+        "id": "fc2d51bbf64794ec",
+        "type": "ui_toast",
+        "z": "6bfe25f64298d2a8",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": true,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 530,
+        "y": 3200,
+        "wires": [
+            [
+                "519c11a56485979b"
+            ]
+        ]
+    },
+    {
+        "id": "519c11a56485979b",
+        "type": "switch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "OK",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Cancel",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 750,
+        "y": 3200,
+        "wires": [
+            [
+                "f77aeb42791c50a4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f77aeb42791c50a4",
+        "type": "http request",
+        "z": "6bfe25f64298d2a8",
+        "name": "Get Token",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://39.108.231.0/EverApi/Api/Token?appkey=EverUgg&appsecret=@RCDGB082304!",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 130,
+        "y": 3320,
+        "wires": [
+            [
+                "9561473975545783"
+            ]
+        ]
+    },
+    {
+        "id": "9561473975545783",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 290,
+        "y": 3320,
+        "wires": [
+            [
+                "3efb64f8f9611870"
+            ]
+        ]
+    },
+    {
+        "id": "3efb64f8f9611870",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "token",
+                "pt": "msg",
+                "to": "payload.Data.Token",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 3320,
+        "wires": [
+            [
+                "461706a5e0a57f28"
+            ]
+        ]
+    },
+    {
+        "id": "461706a5e0a57f28",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 63",
+        "func": "const w = flow.get(\"rowselected_w\");\nconst s = flow.get(\"rowselected_s\");\n\nmsg.payload =  [...w, ...s];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 3320,
+        "wires": [
+            [
+                "2f7c6c117aabb803"
+            ]
+        ]
+    },
+    {
+        "id": "2f7c6c117aabb803",
+        "type": "Combine Start",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "number": 0,
+        "waitArray": true,
+        "iterateArray": true,
+        "x": 940,
+        "y": 3320,
+        "wires": [
+            [
+                "bf83b173043ced0e"
+            ]
+        ]
+    },
+    {
+        "id": "bf83b173043ced0e",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "'http://everugg.com/EverApi/Api/Order/AutoAlloc?token='& msg.token",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "row",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.OrderId",
+                "pt": "msg",
+                "to": "row.SheetID",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.Mode",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "payload.NeedPick",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.WarehouseCode",
+                "pt": "msg",
+                "to": "row.WarehouseCode",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.Creator",
+                "pt": "msg",
+                "to": "row.Createdby",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.Remark",
+                "pt": "msg",
+                "to": "row.Remark",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.TrafficInfo.TrafficTypeId",
+                "pt": "msg",
+                "to": "2",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 130,
+        "y": 3460,
+        "wires": [
+            [
+                "62b9c5362e1564f7"
+            ]
+        ]
+    },
+    {
+        "id": "62b9c5362e1564f7",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 64",
+        "func": "msg.payload.StockupIds =[]\n\nif(msg.payload.WarehouseCode==\"100003\"){\n    msg.payload.StockupIds = [\"PD20200409000188\", \"PD20191112000551\", \"PD20211214000547\"]\n\n}else if(msg.payload.WarehouseCode == \"AUSYD1\"){\n\n    msg.payload.StockupIds = [\"PD20240219000286\", \"PD20240219000287\", \"PD20240219000288\"]\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 3460,
+        "wires": [
+            [
+                "4cedf046354bfeb9"
+            ]
+        ]
+    },
+    {
+        "id": "4cedf046354bfeb9",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 550,
+        "y": 3460,
+        "wires": [
+            [
+                "5f3d47bdf7e5ddfe"
+            ]
+        ]
+    },
+    {
+        "id": "5f3d47bdf7e5ddfe",
+        "type": "http request",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Content-Type",
+                "valueType": "other",
+                "valueValue": "application/json"
+            },
+            {
+                "keyType": "other",
+                "keyValue": "Accept",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 730,
+        "y": 3460,
+        "wires": [
+            [
+                "c89cd222babd9f9b",
+                "07c1b4883b08b2eb"
+            ]
+        ]
+    },
+    {
+        "id": "c89cd222babd9f9b",
+        "type": "json",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 910,
+        "y": 3460,
+        "wires": [
+            [
+                "d29a0c5c1ec9e201"
+            ]
+        ]
+    },
+    {
+        "id": "d29a0c5c1ec9e201",
+        "type": "Combine End",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "saveOutput": 1,
+        "x": 1100,
+        "y": 3480,
+        "wires": [
+            [
+                "c360384f0d929f52"
+            ]
+        ]
+    },
+    {
+        "id": "816fa3a66a10f7e8",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 67",
+        "func": "var result = flow.get(\"oms_result\");\nresult.push(msg.payload);\nflow.set(\"oms_result\",result);\nmsg.payload=result;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 1940,
+        "wires": [
+            [
+                "8b3d56e1cba7e2c9",
+                "6c2bd9d79a1086fc",
+                "e47746948d0b35f7"
+            ]
+        ]
+    },
+    {
+        "id": "8b3d56e1cba7e2c9",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "get output",
+        "func": "msg.payload = msg.payload.filter(e => e != undefined);\nconst values = msg.payload.map(obj => obj.ClientOrderNo); // Extract the values from each object\nmsg.payload = values.join(','); // Join the values with a comma separator\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 1780,
+        "wires": [
+            [
+                "44fd40a0fe035a8c"
+            ]
+        ]
+    },
+    {
+        "id": "9ec6923f28718bd5",
+        "type": "catch",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "scope": [
+            "49f17bc0d50ec4c6",
+            "347cde12738ef2d1",
+            "e256ec31e15e2927",
+            "4aba7318208e9996",
+            "30cd27d862f43e87",
+            "e1b58e85bc9399d0"
+        ],
+        "uncaught": false,
+        "x": 690,
+        "y": 2100,
+        "wires": [
+            [
+                "b8c62bec4aa558e0",
+                "9a16f81c10a4edd2"
+            ]
+        ]
+    },
+    {
+        "id": "b8c62bec4aa558e0",
+        "type": "debug",
+        "z": "6bfe25f64298d2a8",
+        "name": "debug 44",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 2100,
+        "wires": []
+    },
+    {
+        "id": "29cf9319dc6cab1b",
+        "type": "change",
+        "z": "6bfe25f64298d2a8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 1440,
+        "wires": [
+            [
+                "44fd40a0fe035a8c",
+                "6c2bd9d79a1086fc",
+                "640c52eecaac9e9f",
+                "ab2a86fdc71f027a"
+            ]
+        ]
+    },
+    {
+        "id": "640c52eecaac9e9f",
+        "type": "ui_text",
+        "z": "6bfe25f64298d2a8",
+        "group": "3254beef28825cd1",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "name": "Count",
+        "label": "Total",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1390,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "e47746948d0b35f7",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 68",
+        "func": "msg.payload = msg.payload.length\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 1920,
+        "wires": [
+            [
+                "640c52eecaac9e9f"
+            ]
+        ]
+    },
+    {
+        "id": "ab2a86fdc71f027a",
+        "type": "ui_text",
+        "z": "6bfe25f64298d2a8",
+        "group": "3254beef28825cd1",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "name": "Error",
+        "label": "Error",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1270,
+        "y": 2160,
+        "wires": []
+    },
+    {
+        "id": "9a16f81c10a4edd2",
+        "type": "function",
+        "z": "6bfe25f64298d2a8",
+        "name": "function 69",
+        "func": "var result = flow.get(\"oms_error\");\nresult.push(msg.oms_order_line);\nflow.set(\"oms_error\", result);\nmsg.payload = result;\n\nmsg.payload = msg.payload.filter(e => e != undefined);\nvar values = msg.payload.map(obj => obj.ClientOrderNo); // Extract the values from each object\n\nvalues = values.filter((x, i, a) => a.indexOf(x) == i)\n\nmsg.payload = values.join(','); // Join the values with a comma separator\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 2160,
+        "wires": [
+            [
+                "ab2a86fdc71f027a"
+            ]
+        ]
+    },
+    {
+        "id": "ad3c6b40c7a5e1f6",
+        "type": "ui_spacer",
+        "z": "6bfe25f64298d2a8",
+        "name": "spacer",
+        "group": "f7442258face64c0",
+        "order": 2,
+        "width": 23,
+        "height": 1
+    },
+    {
+        "id": "473875b06f3c293a",
+        "type": "ui_spacer",
+        "z": "6bfe25f64298d2a8",
+        "name": "spacer",
+        "group": "333af0c4f2c67b74",
+        "order": 5,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "5e0f73f8f1ae733f",
+        "type": "ui_spacer",
+        "z": "6bfe25f64298d2a8",
+        "name": "spacer",
+        "group": "333af0c4f2c67b74",
+        "order": 6,
+        "width": 15,
+        "height": 1
+    },
+    {
+        "id": "f6c9d17e9dd64d21",
+        "type": "ui_spacer",
+        "z": "6bfe25f64298d2a8",
+        "name": "spacer",
+        "group": "3254beef28825cd1",
+        "order": 7,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "5c9775e521780986",
+        "type": "ui_spacer",
+        "z": "6bfe25f64298d2a8",
+        "name": "spacer",
+        "group": "3254beef28825cd1",
+        "order": 11,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "13d38ce9aeb743d4",
+        "type": "ui_spacer",
+        "z": "6bfe25f64298d2a8",
+        "name": "spacer",
+        "group": "1720beaa592edf71",
+        "order": 1,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "4b1276863355a11c",
+        "type": "ui_spacer",
+        "z": "6bfe25f64298d2a8",
+        "name": "spacer",
+        "group": "1720beaa592edf71",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "fd5cb6896cfd6abe",
+        "type": "ui_spacer",
+        "z": "6bfe25f64298d2a8",
+        "name": "spacer",
+        "group": "1720beaa592edf71",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "14de2c45813e2a0c",
+        "type": "ui_spacer",
+        "z": "6bfe25f64298d2a8",
+        "name": "spacer",
+        "group": "1720beaa592edf71",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "333af0c4f2c67b74",
+        "type": "ui_group",
+        "name": "Readytoship Unship Orders",
+        "tab": "9005ee1c69f46270",
+        "order": 2,
+        "disp": false,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f7442258face64c0",
+        "type": "ui_group",
+        "name": "header",
+        "tab": "9005ee1c69f46270",
+        "order": 1,
+        "disp": false,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "95a11a185d21d3d6",
+        "type": "map-config",
+        "name": "state - WarehouseNo",
+        "lhsName": "state",
+        "rhsName": "WarehouseNo",
+        "mappings": [
+            {
+                "lhs": "VIC",
+                "rhs": "AUSME1"
+            },
+            {
+                "lhs": "WA",
+                "rhs": "AUPTH1"
+            },
+            {
+                "lhs": "NSW",
+                "rhs": "100003"
+            },
+            {
+                "lhs": "QLD",
+                "rhs": "100003"
+            },
+            {
+                "lhs": "SA",
+                "rhs": "100003"
+            },
+            {
+                "lhs": "TAS",
+                "rhs": "100003"
+            },
+            {
+                "lhs": "NT",
+                "rhs": "100003"
+            }
+        ]
+    },
+    {
+        "id": "b757482c62c95498",
+        "type": "map-config",
+        "name": "channel - ChannelCode",
+        "lhsName": "channel",
+        "rhsName": "ChannelCode",
+        "mappings": [
+            {
+                "lhs": "OZ_eBay",
+                "rhs": "100710"
+            },
+            {
+                "lhs": "OZ_ Amazon",
+                "rhs": "100095"
+            },
+            {
+                "lhs": "OZ_Website",
+                "rhs": "100710"
+            },
+            {
+                "lhs": "TUB_Website",
+                "rhs": "100924"
+            },
+            {
+                "lhs": "TUB_eBay",
+                "rhs": "100924"
+            },
+            {
+                "lhs": "TOA_Website",
+                "rhs": "100158"
+            },
+            {
+                "lhs": "UE_eBay",
+                "rhs": "100158"
+            },
+            {
+                "lhs": "UE_Website",
+                "rhs": "100036"
+            },
+            {
+                "lhs": "UE_Amazon",
+                "rhs": "100095"
+            },
+            {
+                "lhs": "UE_The Market",
+                "rhs": "100036"
+            },
+            {
+                "lhs": "UE_TradeMe",
+                "rhs": "100445"
+            },
+            {
+                "lhs": "UE_Kogan",
+                "rhs": "100764"
+            },
+            {
+                "lhs": "UE_Mydeal",
+                "rhs": "100185"
+            },
+            {
+                "lhs": "AS_Website",
+                "rhs": "100533"
+            },
+            {
+                "lhs": "Ever_Groupon_AU",
+                "rhs": "100162"
+            },
+            {
+                "lhs": "Ever_SC",
+                "rhs": "100164"
+            },
+            {
+                "lhs": "Ever_Warranty",
+                "rhs": "100231"
+            },
+            {
+                "lhs": "Ever_eBay",
+                "rhs": "100974"
+            },
+            {
+                "lhs": "Ever_Catch",
+                "rhs": "100939"
+            },
+            {
+                "lhs": "Ever_Kogan",
+                "rhs": "100923"
+            },
+            {
+                "lhs": "Ever_MyDeal",
+                "rhs": "100976"
+            },
+            {
+                "lhs": "Ever_Amazon",
+                "rhs": "100977"
+            },
+            {
+                "lhs": "Ever_Website",
+                "rhs": "101027"
+            },
+            {
+                "lhs": "TA_Website",
+                "rhs": "101027"
+            },
+            {
+                "lhs": "UO_Website",
+                "rhs": "101103"
+            },
+            {
+                "lhs": "TUS_Website",
+                "rhs": "100761"
+            },
+            {
+                "lhs": "OZ_Amazon",
+                "rhs": "100095"
+            }
+        ]
+    },
+    {
+        "id": "3254beef28825cd1",
+        "type": "ui_group",
+        "name": "oms",
+        "tab": "9005ee1c69f46270",
+        "order": 3,
+        "disp": false,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1720beaa592edf71",
+        "type": "ui_group",
+        "name": "oms_import",
+        "tab": "9005ee1c69f46270",
+        "order": 4,
+        "disp": false,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a50878c30a15c0f5",
+        "type": "ui_group",
+        "name": "100003",
+        "tab": "9005ee1c69f46270",
+        "order": 6,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7459f8a69b74d9a6",
+        "type": "ui_group",
+        "name": "智能配货",
+        "tab": "9005ee1c69f46270",
+        "order": 5,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4cc9761b7aea8c03",
+        "type": "ui_group",
+        "name": "AUSYD1",
+        "tab": "9005ee1c69f46270",
+        "order": 7,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9005ee1c69f46270",
+        "type": "ui_tab",
+        "name": "Readytoship下单",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

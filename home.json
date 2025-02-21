@@ -1,0 +1,404 @@
+[
+    {
+        "id": "d6dc70063c901633",
+        "type": "tab",
+        "label": "Home",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0f4e532fc68c0e6a",
+        "type": "ui_list",
+        "z": "d6dc70063c901633",
+        "group": "0d927a94f8917f96",
+        "name": "菜单列表",
+        "order": 4,
+        "width": 12,
+        "height": 6,
+        "lineType": "two",
+        "actionType": "click",
+        "allowHTML": true,
+        "outputs": 1,
+        "topic": "",
+        "x": 460,
+        "y": 200,
+        "wires": [
+            [
+                "3eef7d7aedfbe838"
+            ]
+        ]
+    },
+    {
+        "id": "e1c99d8d177338e2",
+        "type": "inject",
+        "z": "d6dc70063c901633",
+        "name": "Home 首页菜单初始化",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "<h1>OMS导入工具</h1>",
+        "payload": "[{\"title\":\"ReadyToShip下单\",\"description\":\"ReadyToShip CSV to OMS\",\"icon\":\"https://www.readytoship.com.au/wp-content/uploads/2019/11/favicon-152.png\",\"tab\":1},{\"title\":\"eMega下单\",\"description\":\"eMega CSV to OMS\",\"icon\":\"http://track.emega.com.au/favicon.ico\",\"tab\":2},{\"title\":\"ERP移库\",\"description\":\"Stock Transfer\",\"icon\":\"http://everugg.com:8080/regentaz/favicon.ico\",\"tab\":3},{\"title\":\"考拉海购下单\",\"description\":\"菜鸟 to OMS\",\"icon\":\"https://img.alicdn.com/tfs/TB13g4aqXP7gK0jSZFjXXc5aXXa-32-32.ico\",\"tab\":6},{\"title\":\"OzSale下单\",\"description\":\"Ozsale to ERP\",\"icon\":\"https://www.mysalemarketplace.com/splash-page/images/ozsale.svg\",\"tab\":7}]",
+        "payloadType": "json",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "0f4e532fc68c0e6a",
+                "ca898b5af365a32b"
+            ]
+        ]
+    },
+    {
+        "id": "ca898b5af365a32b",
+        "type": "ui_text",
+        "z": "d6dc70063c901633",
+        "group": "0d927a94f8917f96",
+        "order": 3,
+        "width": 24,
+        "height": 1,
+        "name": "标题",
+        "label": "",
+        "format": "{{msg.topic}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 450,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "3eef7d7aedfbe838",
+        "type": "ui_ui_control",
+        "z": "d6dc70063c901633",
+        "name": "",
+        "events": "change",
+        "x": 740,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b97bc1c0.cb899",
+        "type": "ui_template",
+        "z": "d6dc70063c901633",
+        "group": "c982fbb8.1deb38",
+        "name": "Clock Toolbar",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n\n$(function() {\n    if($('.md-toolbar-tools').length != 0){\n        loadClock();\n    }else setTimeout(loadClock, 500)\n});\n\nfunction loadClock(){\n    $('#clock').remove();\n    var toolbar = $('.md-toolbar-tools');\n    \n    var div = $('<div/>');\n    var p = $('<p/ id=\"clock\">');\n    \n    div.append(p);\n    div[0].style.margin = '5px 5px 5px auto';\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n    \n    function upTime() {\n        var d = new Date();\n        p.text(d.toLocaleString());\n    }\n\n    if(document.clockInterval){ \n            clearInterval(document.clockInterval);\n            document.clockInterval = null;\n    }\n        \n    document.clockInterval = setInterval(upTime,1000);\n}\n\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "global",
+        "x": 740,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b11e1640001d3b36",
+        "type": "ui_button",
+        "z": "d6dc70063c901633",
+        "name": "",
+        "group": "0d927a94f8917f96",
+        "order": 1,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "Home",
+        "tooltip": "",
+        "color": "black",
+        "bgcolor": "transparent",
+        "className": "nav",
+        "icon": "",
+        "payload": "{\"tab\":0}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 470,
+        "y": 80,
+        "wires": [
+            [
+                "3eef7d7aedfbe838"
+            ]
+        ]
+    },
+    {
+        "id": "6d3a43d673ab07c4",
+        "type": "ui_template",
+        "z": "d6dc70063c901633",
+        "group": "0d927a94f8917f96",
+        "name": "Custom CSS",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n\n.nav button:focus { \noutline: none !important; \n}\n\n.nav button {\nbox-shadow: none !important;\n}\n\n.nr-dashboard-button .md-button {\nwidth: auto !important;\nheight: auto !important;\n}\n\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 190,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f31a598d.9fd2c8",
+        "type": "function",
+        "z": "d6dc70063c901633",
+        "name": "Set base path",
+        "func": "//restrict to c:\\temp\\\nvar basePath = \"C:\\\\Users\\\\admin\\\\Downloads\\\\\";\nvar filename = msg.req.params.fn;\n\n\nif(filename.includes(\"..\\\\\")){\n    msg.payload = \"Illegal file path\";\n    msg.statusCode = 405;//not allowed\n    return [null, msg];//fire output 2\n} else if(filename.includes(\"../\")){\n    msg.payload = \"Illegal file path\";\n    msg.statusCode = 405;//not allowed\n    return [null, msg];//fire output 2\n} \n//TODO: add more checks\n\nmsg.filename = basePath + filename;\nreturn [msg, null];//fire output 1\n\n\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 420,
+        "wires": [
+            [
+                "34dc99e5.495466"
+            ],
+            [
+                "98261154.3006"
+            ]
+        ]
+    },
+    {
+        "id": "98261154.3006",
+        "type": "http response",
+        "z": "d6dc70063c901633",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "34dc99e5.495466",
+        "type": "file in",
+        "z": "d6dc70063c901633",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 550,
+        "y": 400,
+        "wires": [
+            [
+                "98261154.3006"
+            ]
+        ]
+    },
+    {
+        "id": "38d65d59.1d8aa2",
+        "type": "catch",
+        "z": "d6dc70063c901633",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "3b8014a.86ad8ec",
+                "5b18a8e7.fb8da8"
+            ]
+        ]
+    },
+    {
+        "id": "3b8014a.86ad8ec",
+        "type": "function",
+        "z": "d6dc70063c901633",
+        "name": "Set 404",
+        "func": "msg.payload = msg.error;\nmsg.statusCode = 404;//resource not found\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 500,
+        "wires": [
+            [
+                "98261154.3006"
+            ]
+        ]
+    },
+    {
+        "id": "5b18a8e7.fb8da8",
+        "type": "debug",
+        "z": "d6dc70063c901633",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 210,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "5de7cbb4.fa21a4",
+        "type": "comment",
+        "z": "d6dc70063c901633",
+        "name": "公共功能，下载文件的服务，/files/xxx  对应 下载目录",
+        "info": "",
+        "x": 290,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "67ecfa7f.3f0e24",
+        "type": "http in",
+        "z": "d6dc70063c901633",
+        "name": "",
+        "url": "/ui/files/:fn",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 420,
+        "wires": [
+            [
+                "f31a598d.9fd2c8"
+            ]
+        ]
+    },
+    {
+        "id": "06e373ecef765172",
+        "type": "ui_list",
+        "z": "d6dc70063c901633",
+        "group": "0d927a94f8917f96",
+        "name": "菜单列表",
+        "order": 5,
+        "width": 12,
+        "height": 6,
+        "lineType": "two",
+        "actionType": "click",
+        "allowHTML": true,
+        "outputs": 1,
+        "topic": "",
+        "x": 460,
+        "y": 260,
+        "wires": [
+            [
+                "3eef7d7aedfbe838"
+            ]
+        ]
+    },
+    {
+        "id": "f452ca0c8f982b5d",
+        "type": "inject",
+        "z": "d6dc70063c901633",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[{\"title\":\"其他Demo\",\"description\":\"其他测试\",\"icon_name\":\"fa-cog\",\"tab\":4}]",
+        "payloadType": "json",
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "06e373ecef765172"
+            ]
+        ]
+    },
+    {
+        "id": "1f14e8ec85635514",
+        "type": "ui_template",
+        "z": "d6dc70063c901633",
+        "group": "0d927a94f8917f96",
+        "name": "",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "format": "<script type=\"module\">\n    import Chatbot from \"https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js\"\n    Chatbot.init({\n        chatflowid: \"d942d9ae-d762-4b8a-b38c-322182432fb8\",\n        apiHost: \"http://192.168.7.201:3000\",\n    })\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 960,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "14e40c6e08dfb42f",
+        "type": "ui_spacer",
+        "z": "d6dc70063c901633",
+        "name": "spacer",
+        "group": "0d927a94f8917f96",
+        "order": 2,
+        "width": 23,
+        "height": 1
+    },
+    {
+        "id": "0d927a94f8917f96",
+        "type": "ui_group",
+        "name": "Home Group",
+        "tab": "fd77c136c665d58d",
+        "order": 1,
+        "disp": false,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c982fbb8.1deb38",
+        "type": "ui_group",
+        "name": "hidden_group",
+        "tab": "7c447e96.4b96a",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "fd77c136c665d58d",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "7c447e96.4b96a",
+        "type": "ui_tab",
+        "name": "Zooland Sys",
+        "icon": "home",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
