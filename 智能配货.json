@@ -1,0 +1,471 @@
+[
+    {
+        "id": "b33fda456c412ba0",
+        "type": "tab",
+        "label": "智能配货",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ae6c1ca5a987ea48",
+        "type": "component_in",
+        "z": "b33fda456c412ba0",
+        "name": "SOAP Request",
+        "api": [
+            {
+                "name": "body",
+                "type": "string",
+                "required": true,
+                "contextOption": true
+            },
+            {
+                "name": "path",
+                "type": "string",
+                "required": true,
+                "contextOption": true
+            },
+            {
+                "name": "action",
+                "type": "string",
+                "required": true,
+                "contextOption": true
+            }
+        ],
+        "usecontext": true,
+        "x": 320,
+        "y": 440,
+        "wires": [
+            [
+                "92f45f5b080ddd86"
+            ]
+        ]
+    },
+    {
+        "id": "19786a5160da1da5",
+        "type": "component_out",
+        "z": "b33fda456c412ba0",
+        "name": "SOAP Return",
+        "mode": "default",
+        "component_definitions_are_NOT_allowed_inside_subflows": false,
+        "x": 820,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "92f45f5b080ddd86",
+        "type": "simple-soap",
+        "z": "b33fda456c412ba0",
+        "host": "http://39.108.231.0",
+        "hostType": "str",
+        "path": "component.path",
+        "pathType": "msg",
+        "action": "component.action",
+        "actionType": "msg",
+        "body": "component.body",
+        "bodyType": "msg",
+        "mustache": false,
+        "attrkey": "$",
+        "charkey": "_",
+        "stripPrefix": false,
+        "simplify": false,
+        "normalizeTags": false,
+        "normalize": false,
+        "topic": "",
+        "name": "",
+        "useAuth": false,
+        "x": 570,
+        "y": 440,
+        "wires": [
+            [
+                "19786a5160da1da5"
+            ]
+        ]
+    },
+    {
+        "id": "df03680498659bca",
+        "type": "component",
+        "z": "b33fda456c412ba0",
+        "name": "GetSheetList",
+        "targetComponent": null,
+        "targetComponentId": "ae6c1ca5a987ea48",
+        "paramSources": {
+            "body": {
+                "name": "body",
+                "source": "body",
+                "sourceType": "msg"
+            },
+            "path": {
+                "name": "path",
+                "source": "/PDAServer/IntelligenceSendNotice.asmx",
+                "sourceType": "str"
+            },
+            "action": {
+                "name": "action",
+                "source": "http://tempuri.org/GetSheetList",
+                "sourceType": "str"
+            }
+        },
+        "statuz": "",
+        "statuzType": "str",
+        "outputs": 1,
+        "outLabels": [
+            "default"
+        ],
+        "x": 590,
+        "y": 580,
+        "wires": [
+            [
+                "385f11fa7f2d581b"
+            ]
+        ]
+    },
+    {
+        "id": "77f4dcda431a100b",
+        "type": "inject",
+        "z": "b33fda456c412ba0",
+        "name": "",
+        "props": [
+            {
+                "p": "body2",
+                "v": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><GetSheetList xmlns=\"http://tempuri.org/\"><request><AppKey>Regentsoft</AppKey><AppSecret>123</AppSecret><UserId>f1dd737f7a4b5e42302cd63ce35a6d5a</UserId><UserAccount>Tim</UserAccount><UserName>Tim Zhang</UserName><ChannelCode /><SheetId /><SheetType>......</SheetType><NotPrint>true</NotPrint><Checked xsi:nil=\"true\" /><NoAlloc>true</NoAlloc><NeedPick xsi:nil=\"true\" /><BusinessType>All</BusinessType><Remark /><WarehouseId>d98ce9c51caa555a8f515f3a35d1600d</WarehouseId><BeginDate>2023-08-17</BeginDate><EndDate>2023-08-24</EndDate><GoodsNo /><Source xsi:nil=\"true\" /></request></GetSheetList></soap:Body></soap:Envelope>",
+                "vt": "str"
+            },
+            {
+                "p": "body",
+                "v": "<x:Envelope     xmlns:x=\"http://schemas.xmlsoap.org/soap/envelope/\"     xmlns:tem=\"http://tempuri.org/\">     <x:Header/>     <x:Body>         <tem:GetSheetList>             <tem:request>                 <tem:AppKey>Regentsoft</tem:AppKey>                 <tem:AppSecret>123</tem:AppSecret>                 <tem:BusinessType>All</tem:BusinessType>                 <tem:WarehouseId>d98ce9c51caa555a8f515f3a35d1600d</tem:WarehouseId>                 <tem:BeginDate>2024-05-21</tem:BeginDate>                 <tem:EndDate>2024-05-21</tem:EndDate>                 <tem:Source>ERP</tem:Source>             </tem:request>         </tem:GetSheetList>     </x:Body> </x:Envelope>",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 350,
+        "y": 580,
+        "wires": [
+            [
+                "df03680498659bca"
+            ]
+        ]
+    },
+    {
+        "id": "385f11fa7f2d581b",
+        "type": "debug",
+        "z": "b33fda456c412ba0",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "0cfa5aab924c2e66",
+        "type": "debug",
+        "z": "b33fda456c412ba0",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b4bef5644c89daf2",
+        "type": "component",
+        "z": "b33fda456c412ba0",
+        "name": "CreateSendNotice",
+        "targetComponent": null,
+        "targetComponentId": "ae6c1ca5a987ea48",
+        "paramSources": {
+            "body": {
+                "name": "body",
+                "source": "body",
+                "sourceType": "msg"
+            },
+            "path": {
+                "name": "path",
+                "source": "/PDAServer/IntelligenceSendNotice.asmx",
+                "sourceType": "str"
+            },
+            "action": {
+                "name": "action",
+                "source": "http://tempuri.org/CreateSendNotice",
+                "sourceType": "str"
+            }
+        },
+        "statuz": "",
+        "statuzType": "str",
+        "outputs": 1,
+        "outLabels": [
+            "default"
+        ],
+        "x": 590,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7c5f52ef1873d87c",
+        "type": "inject",
+        "z": "b33fda456c412ba0",
+        "name": "",
+        "props": [
+            {
+                "p": "body",
+                "v": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><GetSheetList xmlns=\"http://tempuri.org/\"><request><AppKey>Regentsoft</AppKey><AppSecret>123</AppSecret><UserId>f1dd737f7a4b5e42302cd63ce35a6d5a</UserId><UserAccount>Tim</UserAccount><UserName>Tim Zhang</UserName><ChannelCode /><SheetId /><SheetType>......</SheetType><NotPrint>true</NotPrint><Checked xsi:nil=\"true\" /><NoAlloc>true</NoAlloc><NeedPick xsi:nil=\"true\" /><BusinessType>All</BusinessType><Remark /><WarehouseId>d98ce9c51caa555a8f515f3a35d1600d</WarehouseId><BeginDate>2023-08-17</BeginDate><EndDate>2023-08-24</EndDate><GoodsNo /><Source xsi:nil=\"true\" /></request></GetSheetList></soap:Body></soap:Envelope>",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 330,
+        "y": 780,
+        "wires": [
+            [
+                "b4bef5644c89daf2"
+            ]
+        ]
+    },
+    {
+        "id": "cd4be8adc64b94c6",
+        "type": "component",
+        "z": "b33fda456c412ba0",
+        "name": "GetSheetGoodsByGuid",
+        "targetComponent": null,
+        "targetComponentId": "ae6c1ca5a987ea48",
+        "paramSources": {
+            "body": {
+                "name": "body",
+                "source": "body",
+                "sourceType": "msg"
+            },
+            "path": {
+                "name": "path",
+                "source": "/PDAServer/IntelligenceSendNotice.asmx",
+                "sourceType": "str"
+            },
+            "action": {
+                "name": "action",
+                "source": "http://tempuri.org/GetSheetGoodsByGuid",
+                "sourceType": "str"
+            }
+        },
+        "statuz": "",
+        "statuzType": "str",
+        "outputs": 1,
+        "outLabels": [
+            "default"
+        ],
+        "x": 630,
+        "y": 680,
+        "wires": [
+            [
+                "385f11fa7f2d581b"
+            ]
+        ]
+    },
+    {
+        "id": "7e05b06786119027",
+        "type": "inject",
+        "z": "b33fda456c412ba0",
+        "name": "",
+        "props": [
+            {
+                "p": "body",
+                "v": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><GetSheetGoodsByGuid xmlns=\"http://tempuri.org/\"><request><AppKey>Regentsoft</AppKey><AppSecret>123</AppSecret><UserId>f1dd737f7a4b5e42302cd63ce35a6d5a</UserId><UserAccount>Tim</UserAccount><UserName>Tim Zhang</UserName><Guid>cda6d636da1a9b7ffa04237d6f70a7e0</Guid><Mode>FirstWarehouse</Mode><SheetType>......</SheetType><WarehouesId>d98ce9c51caa555a8f515f3a35d1600d</WarehouesId></request></GetSheetGoodsByGuid></soap:Body></soap:Envelope>",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 350,
+        "y": 680,
+        "wires": [
+            [
+                "99173736a35bb2cf"
+            ]
+        ]
+    },
+    {
+        "id": "99173736a35bb2cf",
+        "type": "simple-soap",
+        "z": "b33fda456c412ba0",
+        "host": "http://39.108.231.0",
+        "hostType": "str",
+        "path": "/PDAServer/IntelligenceSendNotice.asmx",
+        "pathType": "str",
+        "action": "http://tempuri.org/GetSheetGoodsByGuid",
+        "actionType": "str",
+        "body": "body",
+        "bodyType": "msg",
+        "mustache": false,
+        "attrkey": "$",
+        "charkey": "_",
+        "stripPrefix": false,
+        "simplify": false,
+        "normalizeTags": false,
+        "normalize": false,
+        "topic": "",
+        "name": "",
+        "useAuth": false,
+        "x": 730,
+        "y": 740,
+        "wires": [
+            [
+                "385f11fa7f2d581b"
+            ]
+        ]
+    },
+    {
+        "id": "e1897e6b0ec71864",
+        "type": "inject",
+        "z": "b33fda456c412ba0",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "4a88463a9a03e756"
+            ]
+        ]
+    },
+    {
+        "id": "4a88463a9a03e756",
+        "type": "change",
+        "z": "b33fda456c412ba0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "action",
+                "pt": "msg",
+                "to": "GetSheetList",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"request\":{\"AppKey\":\"Regentsoft\",\"AppSecret\":\"123\",\"UserId\":\"f1dd737f7a4b5e42302cd63ce35a6d5a\",\"UserAccount\":\"Tim\",\"UserName\":\"Tim Zhang\",\"ChannelCode\":null,\"SheetId\":null,\"SheetType\":\"...\",\"NotPrint\":true,\"NoAlloc\":true,\"BusinessType\":\"All\",\"Remark\":null,\"WarehouseId\":\"d98ce9c51caa555a8f515f3a35d1600d\",\"BeginDate\":\"2023-08-17\",\"EndDate\":\"2023-08-24\",\"GoodsNo\":null}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 160,
+        "wires": [
+            [
+                "e7c234ce32971881"
+            ]
+        ]
+    },
+    {
+        "id": "e7c234ce32971881",
+        "type": "SOAP Client",
+        "z": "b33fda456c412ba0",
+        "name": "",
+        "url": "http://39.108.231.0/PDAServer/IntelligenceSendNotice.asmx?WSDL",
+        "x": 770,
+        "y": 160,
+        "wires": [
+            [
+                "0cfa5aab924c2e66"
+            ]
+        ]
+    },
+    {
+        "id": "b66edbdd8ff94188",
+        "type": "change",
+        "z": "b33fda456c412ba0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "action",
+                "pt": "msg",
+                "to": "GetSheetGoodsByGuid",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"request\":{\"AppKey\":\"Regentsoft\",\"AppSecret\":\"123\",\"UserId\":\"f1dd737f7a4b5e42302cd63ce35a6d5a\",\"UserAccount\":\"Tim\",\"UserName\":\"Tim Zhang\",\"Guid\":\"cda6d636da1a9b7ffa04237d6f70a7e0\",\"Mode\":\"FirstWarehouse\",\"SheetType\":\"......\",\"WarehouesId\":\"d98ce9c51caa555a8f515f3a35d1600d\"}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 280,
+        "wires": [
+            [
+                "e7c234ce32971881"
+            ]
+        ]
+    },
+    {
+        "id": "a9480481c9f9c278",
+        "type": "inject",
+        "z": "b33fda456c412ba0",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "b66edbdd8ff94188"
+            ]
+        ]
+    }
+]
